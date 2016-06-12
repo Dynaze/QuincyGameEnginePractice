@@ -4,6 +4,9 @@ using QuincyGameEnginePractice.EngineCode;
 
 namespace QuincyGameEnginePractice.GameScripts
 {
+    /// <summary>
+    /// All components of the game have to inherit this class and the stuff will all be handled automatically
+    /// </summary>
     public class GameObject : IQomponent2D
     {
         bool enabled;
@@ -22,6 +25,13 @@ namespace QuincyGameEnginePractice.GameScripts
             set { visible = value; }
         }
 
+        int drawOrder;
+        public int DrawOrder
+        {
+            get { return drawOrder; }
+            set { drawOrder = value; }
+        }
+
         Vector2 transform;
         public Vector2 Transform
         {
@@ -32,6 +42,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
         public virtual void Initialize()
         {
+            drawOrder = 0;
             enabled = true;
             visible = true;
         }

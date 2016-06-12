@@ -21,6 +21,10 @@ namespace QuincyGameEnginePractice.EngineCode
         /// </summary>
         bool Enabled { get; set; }
         /// <summary>
+        /// the order in which the layers will be rendered to the screen
+        /// </summary>
+        int DrawOrder { get; set; }
+        /// <summary>
         /// Where you set up all the variables in the class for the game component
         /// </summary>
         void Initialize();
