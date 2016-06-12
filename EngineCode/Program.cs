@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice.EngineCode
@@ -12,16 +13,22 @@ namespace QuincyGameEnginePractice.EngineCode
         }
 
         GraphicsDeviceManager graphicsDeviceManager;
+        public Random random;
 
         public Program()
         {
-            graphicsDeviceManager = new GraphicsDeviceManager(this);
+            graphicsDeviceManager = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1280,
+                PreferredBackBufferHeight = 720
+            };
             Init();
         }
 
         void Init()
         {
             Global.Ref = this;
+            random = new Random();
             SceneManager.init();
         }
 

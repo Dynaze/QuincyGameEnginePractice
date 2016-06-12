@@ -46,7 +46,7 @@ namespace QuincyGameEnginePractice.GameScripts
             
         }
 
-        public virtual void Draw(SpriteBatch sb,GameTime gameTime)
+        public virtual void Draw(SpriteBatch sb)
         {
             
         }

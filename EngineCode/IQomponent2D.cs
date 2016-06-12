@@ -6,7 +6,7 @@ namespace QuincyGameEnginePractice.EngineCode
     /// <summary>
     /// This like like a gameobject in unity that you place in the scene that can be anything from like a player to like ui or something
     /// </summary>
-    interface IQomponent2D
+    public interface IQomponent2D
     {
         /// <summary>
         /// all component have a transform in the scene so that we can move them around
@@ -37,7 +37,7 @@ namespace QuincyGameEnginePractice.EngineCode
         /// This is where you will make all the draw calls for the object in the scene
         /// </summary>
         /// <param name="gameTime"></param>
-        void Draw(SpriteBatch sb,GameTime gameTime);
+        void Draw(SpriteBatch sb);
         /// <summary>
         /// This is where you remove all the textures and stuff to restore memory for other scenes
         /// </summary>

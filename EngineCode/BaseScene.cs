@@ -17,7 +17,7 @@ namespace QuincyGameEnginePractice.EngineCode
             componentManager = new ComponentManager();
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             foreach (var o in componentManager.gameComponents)
             {
@@ -25,7 +25,7 @@ namespace QuincyGameEnginePractice.EngineCode
             }
         }
 
-        public void LoadContent()
+        public virtual void LoadContent()
         {
             spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
             foreach (var o in componentManager.gameComponents)
@@ -56,7 +56,7 @@ namespace QuincyGameEnginePractice.EngineCode
             foreach(var o in componentManager.gameComponents)
             {
                 if(o.Visible)
-                    o.Draw(spriteBatch, gameTime);
+                    o.Draw(spriteBatch);
             }
             if(spriteBatch != null)
                 spriteBatch.End();
@@ -67,7 +67,7 @@ namespace QuincyGameEnginePractice.EngineCode
             foreach(var o in componentManager.gameComponents)
             {
                 if(o.Visible)
-                    o.Draw(spriteBatch, gameTime);
+                    o.Draw(spriteBatch);
             }
         }
 

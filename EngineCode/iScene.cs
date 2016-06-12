@@ -2,7 +2,7 @@
 
 namespace QuincyGameEnginePractice.EngineCode
 {
-    interface IScene
+    public interface IScene
     {
         ComponentManager componentManager { get; set; }
         string SceneName { get; set; }

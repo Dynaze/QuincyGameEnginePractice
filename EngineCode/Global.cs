@@ -6,8 +6,8 @@ namespace QuincyGameEnginePractice.EngineCode
     public static class Global
     {
         public static string pipeline = "Content/Output/Assets/";
-        public static Game ReferenceToGame;
-        public static Game Ref
+        public static Program ReferenceToGame;
+        public static Program Ref
         {
             get
             {

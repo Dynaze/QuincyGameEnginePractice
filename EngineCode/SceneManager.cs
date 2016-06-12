@@ -20,6 +20,11 @@ namespace QuincyGameEnginePractice.EngineCode
             CurrentScene = Scenes[levelOne.SceneName];
         }
 
+        public static IScene GetScene()
+        {
+            return CurrentScene;
+        }
+
         public static void ChangeScene(string scene)
         {
             CurrentScene.UnloadContent();

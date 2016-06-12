@@ -2,7 +2,7 @@
 
 namespace QuincyGameEnginePractice.EngineCode
 {
-    class ComponentManager
+    public class ComponentManager
     {
         public List<IQomponent2D> gameComponents { get; }
 
