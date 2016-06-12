@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuincyGameEnginePractice.EngineCode;
@@ -41,21 +40,21 @@ namespace QuincyGameEnginePractice.GameScripts
             }
             if(InputHandler.KeyDown(Keys.W))
             {
-                toMove += Vec2.Up;
+                toMove += Vector2.Zero.Up();
             }
             if(InputHandler.KeyDown(Keys.A))
             {
-                toMove += Vec2.Left;
+                toMove += Vector2.Zero.Left();
             }
             if(InputHandler.KeyDown(Keys.S))
             {
-                toMove += Vec2.Down;
+                toMove += Vector2.Zero.Down();
             }
             if(InputHandler.KeyDown(Keys.D))
             {
-                toMove += Vec2.Right;
+                toMove += Vector2.Zero.Right();
             }
-            toMove.Normalize();
+            Vector2.Normalize(toMove);
             Transform += toMove * SPEED * delta;
         }
 

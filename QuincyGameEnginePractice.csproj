@@ -70,7 +70,7 @@
     <Compile Include="EngineCode\IQomponent2D.cs" />
     <Compile Include="EngineCode\ComponentManager.cs" />
     <Compile Include="EngineCode\BaseScene.cs" />
-    <Compile Include="EngineCode\Vec2.cs" />
+    <Compile Include="EngineCode\Vec2Extensions.cs" />
     <Compile Include="GameScripts\FPSCounter.cs" />
     <Compile Include="GameScripts\GameObject.cs" />
     <Compile Include="GameScripts\InputHandler.cs" />
