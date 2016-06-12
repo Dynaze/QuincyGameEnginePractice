@@ -9,6 +9,7 @@ namespace QuincyGameEnginePractice.Scenes
     {
         InputHandler input;
         TileMap tileMap;
+        Text fps;
 
         public LevelOne() : base("LevelOne")
         {
@@ -17,24 +18,24 @@ namespace QuincyGameEnginePractice.Scenes
 
         public override void Initialize()
         {
-            SceneBackgroundColor = Color.Brown;
+            SceneBackgroundColor = Color.CornflowerBlue;
+            fps = new Text();
             input = new InputHandler();
-            tileMap = new TileMap(20,20);
+            tileMap = new TileMap(80,45);
+            componentManager.Add(fps);
             componentManager.Add(input);
             componentManager.Add(tileMap);
             base.Initialize();
         }
 
-        public override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            DrawObjects(gameTime);
+            DrawObjects();
+            spriteBatch.End();
+            spriteBatch.Begin();
+            DrawUi();
             spriteBatch.End();
         }
     }

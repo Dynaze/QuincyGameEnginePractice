@@ -10,16 +10,19 @@ namespace QuincyGameEnginePractice.GameScripts
         Texture2D tileSheet;
         RenderTarget2D renderTarget;
         Vector2 scale;
-        float rotation;
         int gridx, gridy;
 
         public TileMap(int gridx,int gridy)
         {
-            Transform = Vector2.Zero;
             this.gridx = gridx;
             this.gridy = gridy;
-            scale = new Vector2(1.5f);
-            rotation = 0f;
+        }
+
+        public override void Initialize()
+        {
+            Transform = Vector2.Zero;
+            scale = new Vector2(1f);
+            base.Initialize();
         }
 
         public override void LoadContent()

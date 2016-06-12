@@ -47,22 +47,39 @@ namespace QuincyGameEnginePractice.EngineCode
         /// Be able to override this function because you will need to mess with both draw and draw ui with the camera in the scene
         /// </summary>
         /// <param name="gameTime"></param>
-        public virtual void Draw(GameTime gameTime)
+        public virtual void Draw()
         {
             Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
-            ///TODO Make a way to fix the camera here because its not possible to get to this from the scene without overriding this part 
-            if(spriteBatch != null)
-                spriteBatch.Begin();
-            foreach(var o in componentManager.gameComponents)
+            if (spriteBatch != null)
             {
-                if(o.Visible)
-                    o.Draw(spriteBatch);
-            }
-            if(spriteBatch != null)
+                spriteBatch.Begin();
+                foreach (var o in componentManager.gameComponents)
+                {
+                    if (o.Visible)
+                        o.Draw(spriteBatch);
+                }
                 spriteBatch.End();
+            }
         }
 
-        protected virtual void DrawObjects(GameTime gameTime)
+        /// <summary>
+        /// alternative draw methods that you can use to draw ui elements to the screen that you wish to follow the camera constantly 
+        /// Note: You cant call this by itself because it doesnt have a spritebatch in it
+        /// Must call from scene 
+        /// </summary>
+        public virtual void DrawUi()
+        {
+            foreach (var o in componentManager.gameComponents)
+            {
+                o.DrawUi(spriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// if you override the draw method you can use this to just quickly draw all the objects in order,
+        /// if you already have another spritebatch working with a camera or something
+        /// </summary>
+        protected virtual void DrawObjects()
         {
             foreach(var o in componentManager.gameComponents)
             {
@@ -71,6 +88,9 @@ namespace QuincyGameEnginePractice.EngineCode
             }
         }
 
+        /// <summary>
+        /// unloads all the memory in the scene if you need to restore memory
+        /// </summary>
         public void UnloadContent()
         {
             foreach (var o in componentManager.gameComponents)

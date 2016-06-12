@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{543BBAE7-FF2F-4FC4-84CE-9970121AD765}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QuincyGameEnginePractice</RootNamespace>
     <AssemblyName>QuincyGameEnginePractice</AssemblyName>
@@ -36,10 +36,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FarseerPhysicsXNA, Version=3.3.5427.35852, Culture=neutral, processorArchitecture=x86">
-      <HintPath>packages\FarseerPhysicsXNA.3.3.1\lib\FarseerPhysicsXNA.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MonoGame.Extended.0.5.149\lib\MonoGame.Extended.dll</HintPath>
       <Private>True</Private>
@@ -75,6 +71,8 @@
     <Compile Include="GameScripts\FPSCounter.cs" />
     <Compile Include="GameScripts\GameObject.cs" />
     <Compile Include="GameScripts\InputHandler.cs" />
+    <Compile Include="GameScripts\Physics.cs" />
+    <Compile Include="GameScripts\Text.cs" />
     <Compile Include="GameScripts\Tile.cs" />
     <Compile Include="GameScripts\TileMap.cs" />
     <Compile Include="Scenes\LevelOne.cs" />
@@ -85,12 +83,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Content\Output\Assets\Fonts\orangeKid.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Output\Assets\Fonts\orangeKid.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Output\Assets\Sprites\TileSheet.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Jacob\Downloads\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj">
+      <Project>{0aad36e3-51a5-4a07-ab60-5c8a66bd38b7}</Project>
+      <Name>Farseer Physics MonoGame</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

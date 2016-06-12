@@ -39,6 +39,11 @@ namespace QuincyGameEnginePractice.EngineCode
         /// <param name="gameTime"></param>
         void Draw(SpriteBatch sb);
         /// <summary>
+        /// Alternative draw method to draw elements that you want to be the user interface and be seen at all times
+        /// </summary>
+        /// <param name="sb"></param>
+        void DrawUi(SpriteBatch sb);
+        /// <summary>
         /// This is where you remove all the textures and stuff to restore memory for other scenes
         /// </summary>
         void UnloadContent();

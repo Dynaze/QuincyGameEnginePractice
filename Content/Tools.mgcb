@@ -25,3 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Sprites/TileSheet.png
 
+#begin Assets/Fonts/orangeKid.ttf
+/copy:Assets/Fonts/orangeKid.ttf
+
+#begin Assets\Fonts\orangeKid.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Assets\Fonts\orangeKid.spritefont
+

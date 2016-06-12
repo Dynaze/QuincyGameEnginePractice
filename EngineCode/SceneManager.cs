@@ -48,9 +48,14 @@ namespace QuincyGameEnginePractice.EngineCode
             CurrentScene.Update(gameTime);
         }
 
-        public static void Draw(GameTime gameTime)
+        public static void Draw()
         {
-            CurrentScene.Draw(gameTime);
+            CurrentScene.Draw();
+        }
+
+        public static void DrawUi()
+        {
+            CurrentScene.DrawUi();
         }
 
         protected static void UnloadContent()

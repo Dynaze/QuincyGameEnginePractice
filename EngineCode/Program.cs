@@ -44,7 +44,7 @@ namespace QuincyGameEnginePractice.EngineCode
 
         protected override void Draw(GameTime gameTime)
         {
-            SceneManager.Draw(gameTime);
+            SceneManager.Draw();
         }
 
         protected override void UnloadContent()

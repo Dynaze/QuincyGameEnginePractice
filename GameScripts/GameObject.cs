@@ -51,6 +51,11 @@ namespace QuincyGameEnginePractice.GameScripts
             
         }
 
+        public virtual void DrawUi(SpriteBatch sb)
+        {
+            
+        }
+
         public virtual void UnloadContent()
         {
             

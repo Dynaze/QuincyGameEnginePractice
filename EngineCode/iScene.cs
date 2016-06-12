@@ -8,7 +8,8 @@ namespace QuincyGameEnginePractice.EngineCode
         string SceneName { get; set; }
         void Initialize();
         void LoadContent();
-        void Draw(GameTime gameTime);
+        void Draw();
+        void DrawUi();
         void Update(GameTime gameTime);
         void UnloadContent();
     }
