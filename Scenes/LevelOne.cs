@@ -22,7 +22,7 @@ namespace QuincyGameEnginePractice.Scenes
 
         World world;
 
-        public LevelOne() : base("LevelOne")
+        public LevelOne(string level) : base(level)
         {
             
         }
@@ -34,7 +34,7 @@ namespace QuincyGameEnginePractice.Scenes
             world = new World(new Vector2(0f, 10f));
             blocks = new List<PhysicsBlock>();
             floor = new PhysicsFloor(world);
-            for(int i = 0; i<100; i++)
+            for(int i = 0; i<50 ; i++)
                 blocks.Add(new PhysicsBlock(world));
             fps = new Text();
             input = new InputHandler();
@@ -53,6 +53,10 @@ namespace QuincyGameEnginePractice.Scenes
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
             if(InputHandler.KeyPressed(Keys.Escape))
                 Global.Ref.Exit();
+            if(InputHandler.KeyPressed(Keys.D2))
+                SceneManager.ChangeScene("LevelTwo");
+            if(InputHandler.KeyPressed(Keys.D1))
+                SceneManager.ChangeScene("LevelOne");
             base.Update(gameTime);
         }
 

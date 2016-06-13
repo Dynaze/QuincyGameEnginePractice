@@ -12,11 +12,15 @@ namespace QuincyGameEnginePractice.EngineCode
 
         public static LevelOne levelOne;
 
+        public static LevelOne levelTwo;
+
         public static void init()
         {
             Scenes = new Dictionary<string, IScene>();
-            levelOne = new LevelOne();
+            levelOne = new LevelOne("LevelOne");
+            levelTwo = new LevelOne("LevelTwo");
             Scenes.Add(levelOne.SceneName, levelOne);
+            Scenes.Add(levelTwo.SceneName, levelTwo);
             CurrentScene = Scenes[levelOne.SceneName];
         }
 
@@ -28,6 +32,8 @@ namespace QuincyGameEnginePractice.EngineCode
         public static void ChangeScene(string scene)
         {
             CurrentScene.UnloadContent();
+            //Reload the scene
+            Scenes[scene] = new LevelOne(scene);
             CurrentScene = Scenes[scene];
             Initialize();
             LoadContent();

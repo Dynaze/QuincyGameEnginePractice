@@ -6,6 +6,7 @@ namespace QuincyGameEnginePractice.EngineCode
 {
     public class Program : Game
     {
+        [STAThread]
         static void Main(string[] args)
         {
             using(var quincy = new Program())

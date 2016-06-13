@@ -36,5 +36,11 @@ namespace QuincyGameEnginePractice.GameScripts
         {
             sb.Draw(floorTexture, new Rectangle((int)ConvertUnits.ToDisplayUnits(floor.Position.X), (int)ConvertUnits.ToDisplayUnits(floor.Position.Y), floorTexture.Width, floorTexture.Height),Color.White);
         }
+
+        public override void UnloadContent()
+        {
+            floorTexture.Dispose();
+            floor.Dispose();
+        }
     }
 }

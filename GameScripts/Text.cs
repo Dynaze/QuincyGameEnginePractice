@@ -28,7 +28,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
         public override void DrawUi(SpriteBatch sb)
         {
-            sb.DrawString(orangeKid, $"FPS:{fpsCounter.GetCurrentFPS()}", Transform, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None,0 );
+            sb.DrawString(orangeKid, $"FPS:{fpsCounter.GetCurrentFPS()}\n{SceneManager.CurrentScene.SceneName}", Transform, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None,0 );
         }
     }
 }

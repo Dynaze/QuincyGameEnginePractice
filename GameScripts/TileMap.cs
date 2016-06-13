@@ -60,5 +60,11 @@ namespace QuincyGameEnginePractice.GameScripts
             if (renderTarget != null)
                 sb.Draw(texture: renderTarget, position: Transform, scale: scale);
         }
+
+        public override void UnloadContent()
+        {
+            tileSheet.Dispose();
+            renderTarget.Dispose();
+        }
     }
 }

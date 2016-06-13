@@ -91,7 +91,7 @@ namespace QuincyGameEnginePractice.EngineCode
         /// <summary>
         /// unloads all the memory in the scene if you need to restore memory
         /// </summary>
-        public void UnloadContent()
+        public virtual void UnloadContent()
         {
             foreach (var o in componentManager.gameComponents)
             {

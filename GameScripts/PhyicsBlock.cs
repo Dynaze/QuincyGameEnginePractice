@@ -37,5 +37,11 @@ namespace QuincyGameEnginePractice.GameScripts
         {
             sb.Draw(block, new Rectangle((int)ConvertUnits.ToDisplayUnits(body.Position.X), (int)ConvertUnits.ToDisplayUnits(body.Position.Y), block.Width, block.Height), Color.White);
         }
+
+        public override void UnloadContent()
+        {
+            block.Dispose();
+            body.Dispose();
+        }
     }
 }
