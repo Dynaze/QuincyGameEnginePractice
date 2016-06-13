@@ -64,7 +64,9 @@
     <Compile Include="GameScripts\FPSCounter.cs" />
     <Compile Include="GameScripts\GameObject.cs" />
     <Compile Include="GameScripts\InputHandler.cs" />
+    <Compile Include="GameScripts\PhyicsBlock.cs" />
     <Compile Include="GameScripts\Physics.cs" />
+    <Compile Include="GameScripts\PhysicsFloor.cs" />
     <Compile Include="GameScripts\Text.cs" />
     <Compile Include="GameScripts\Tile.cs" />
     <Compile Include="GameScripts\TileMap.cs" />
@@ -86,6 +88,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Jacob\Downloads\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj">
+      <Project>{0aad36e3-51a5-4a07-ab60-5c8a66bd38b7}</Project>
+      <Name>Farseer Physics MonoGame</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

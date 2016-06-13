@@ -34,7 +34,7 @@ namespace QuincyGameEnginePractice.EngineCode
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             foreach (var o in componentManager.gameComponents)
             {
