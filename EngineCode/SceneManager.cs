@@ -1,27 +1,31 @@
-﻿using QuincyGameEnginePractice.Scenes;
+﻿using System;
+using QuincyGameEnginePractice.Scenes;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
     class SceneManager
     {
-        public static Dictionary<string,IScene> Scenes;
+        static Dictionary<string,IScene> Scenes;
 
-        public static IScene CurrentScene;
+        static IScene CurrentScene;
 
-        public static LevelOne levelOne;
+        static LevelOne levelOne;
 
-        public static LevelOne levelTwo;
+        static LevelTwo levelTwo;
 
         public static void init()
         {
             Scenes = new Dictionary<string, IScene>();
             levelOne = new LevelOne("LevelOne");
-            levelTwo = new LevelOne("LevelTwo");
+            levelTwo = new LevelTwo("LevelTwo");
             Scenes.Add(levelOne.SceneName, levelOne);
             Scenes.Add(levelTwo.SceneName, levelTwo);
             CurrentScene = Scenes[levelOne.SceneName];
+            Initialize();
+            LoadContent();
         }
 
         public static IScene GetScene()
@@ -29,14 +33,19 @@ namespace QuincyGameEnginePractice.EngineCode
             return CurrentScene;
         }
 
-        public static void ChangeScene(string scene)
+        public static void ChangeScene<T>(string scene ) where T : IScene
         {
-            CurrentScene.UnloadContent();
-            //Reload the scene
-            Scenes[scene] = new LevelOne(scene);
-            CurrentScene = Scenes[scene];
-            Initialize();
-            LoadContent();
+            if (GetScene().SceneName != scene)
+            {
+                CurrentScene.UnloadContent();
+                //Reload the scene
+                //http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
+                //REEEEEFLECTION
+                Scenes[scene] = (T) Activator.CreateInstance(typeof(T), scene);
+                CurrentScene = Scenes[scene];
+                Initialize();
+                LoadContent();
+            }
         }
 
         protected static void Initialize()

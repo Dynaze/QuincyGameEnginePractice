@@ -25,6 +25,16 @@ namespace QuincyGameEnginePractice.GameScripts
 			get { return previousKeyboard; }
 		}
 
+	    public static MouseState CurrMouse
+	    {
+            get { return currentMouse; }
+	    }
+
+	    public static MouseState PreviousMouse
+	    {
+            get { return previousMouse; }
+	    }
+
 		public static GamePadState[] CurrentPadState
 		{
 			get { return currentPadState; }

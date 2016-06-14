@@ -9,66 +9,97 @@ using QuincyGameEnginePractice.GameScripts;
 
 namespace QuincyGameEnginePractice.Scenes
 {
-    class LevelOne : BaseScene
-    {
-        InputHandler input;
-        TileMap tileMap;
-        Text fps;
-        public Rectangle ScreenArea;
+	public class LevelOne : BaseScene
+	{
+		public Rectangle ScreenArea;
 
-        List<PhysicsBlock> blocks;
+		InputHandler input;
 
-        PhysicsFloor floor;
+		TileMap tileMap;
 
-        World world;
+		Text text;
 
-        public LevelOne(string level) : base(level)
-        {
-            
-        }
+		List<Block> blocks;
 
-        public override void Initialize()
-        {
-            ScreenArea = new Rectangle(0,0, Global.Ref.GraphicsDevice.Viewport.X, Global.Ref.GraphicsDevice.Viewport.Y);
-            SceneBackgroundColor = Color.CornflowerBlue;
-            world = new World(new Vector2(0f, 10f));
-            blocks = new List<PhysicsBlock>();
-            floor = new PhysicsFloor(world);
-            for(int i = 0; i<50 ; i++)
-                blocks.Add(new PhysicsBlock(world));
-            fps = new Text();
-            input = new InputHandler();
-            tileMap = new TileMap(80,45);
-            //componentManager.Add(tileMap);
-            foreach(var b in blocks)
-                componentManager.Add(b);
-            componentManager.Add(floor);
-            componentManager.Add(fps);
-            componentManager.Add(input);
-            base.Initialize();
-        }
+		Wall[] walls;
 
-        public override void Update(GameTime gameTime)
-        {
-            world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
-            if(InputHandler.KeyPressed(Keys.Escape))
-                Global.Ref.Exit();
-            if(InputHandler.KeyPressed(Keys.D2))
-                SceneManager.ChangeScene("LevelTwo");
-            if(InputHandler.KeyPressed(Keys.D1))
-                SceneManager.ChangeScene("LevelOne");
-            base.Update(gameTime);
-        }
+		Floor floor;
 
-        public override void Draw()
-        {
-            Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            DrawObjects();
-            spriteBatch.End();
-            spriteBatch.Begin();
-            DrawUi();
-            spriteBatch.End();
-        }
-    }
+		World world;
+
+		float fixedUpdate = 0.0166f;
+
+		float toUpdate;
+
+		public LevelOne(string level) : base(level)
+		{
+
+		}
+
+		public override void Initialize()
+		{
+			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
+			SceneBackgroundColor = Color.CornflowerBlue;
+			world = new World(new Vector2(0f, 10f));
+			blocks = new List<Block>();
+			walls = new Wall[2];
+			floor = new Floor(world, ScreenArea);
+			walls[0] = new Wall(world, ScreenArea, 0);
+			walls[1] = new Wall(world, ScreenArea, 2);
+			for(int i = 0; i < 10; i++)
+				blocks.Add(new Block(world));
+			text = new Text();
+			input = new InputHandler();
+			tileMap = new TileMap(80, 45);
+			componentManager.Add(tileMap);
+			foreach(var b in blocks)
+				componentManager.Add(b);
+			foreach(var w in walls)
+				componentManager.Add(w);
+			componentManager.Add(floor);
+			componentManager.Add(text);
+			componentManager.Add(input);
+			base.Initialize();
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			if(Global.Ref.IsActive)
+			{
+				var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+				if(toUpdate > fixedUpdate)
+				{
+					world.Step(fixedUpdate);
+					toUpdate = 0;
+				}
+				toUpdate += delta;
+				if(InputHandler.KeyPressed(Keys.Escape))
+					Global.Ref.Exit();
+				if(InputHandler.KeyPressed(Keys.D2))
+					SceneManager.ChangeScene<LevelTwo>("LevelTwo");
+				if(InputHandler.KeyPressed(Keys.D1))
+					SceneManager.ChangeScene<LevelOne>("LevelOne");
+				if(InputHandler.KeyPressed(Keys.R))
+					ResetScene();
+				if(InputHandler.CurrMouse.LeftButton == ButtonState.Pressed)
+				{
+					var b = new Block(world);
+					blocks.Add(b);
+					componentManager.Insert(b);
+				}
+				base.Update(gameTime);
+			}
+		}
+
+		public override void Draw()
+		{
+			Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
+			spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+			DrawObjects();
+			spriteBatch.End();
+			spriteBatch.Begin();
+			DrawUi();
+			spriteBatch.End();
+		}
+	}
 }

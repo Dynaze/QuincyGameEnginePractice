@@ -28,13 +28,13 @@ namespace QuincyGameEnginePractice.GameScripts
 		/// <summary>
 		/// Current FPS
 		/// </summary>
-		public float CurrentFramesPerSecond;
+		public double CurrentFramesPerSecond;
 
 		const int MAXIMUM_SAMPLES = 100;
 
 		Queue<float> sampleBuffer;
 
-		public FPSCounter(Game game)
+		public FPSCounter()
 		{
 			Enabled = true;
 			Visible = false;
@@ -47,11 +47,11 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void Update(GameTime gameTime)
 		{
-			var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			var deltaTime = gameTime.ElapsedGameTime.TotalSeconds;
 
-			CurrentFramesPerSecond = 1.0f / deltaTime;
+			CurrentFramesPerSecond = 1.0 / deltaTime;
 
-			sampleBuffer.Enqueue(CurrentFramesPerSecond);
+			sampleBuffer.Enqueue((float)CurrentFramesPerSecond);
 
 			if(sampleBuffer.Count > MAXIMUM_SAMPLES)
 			{
@@ -60,11 +60,11 @@ namespace QuincyGameEnginePractice.GameScripts
 			}
 			else
 			{
-				AverageFramesPerSecond = CurrentFramesPerSecond;
+				AverageFramesPerSecond = (float)CurrentFramesPerSecond;
 			}
 
 			TotalFrames++;
-			TotalSeconds += deltaTime;
+			TotalSeconds += (float)deltaTime;
 		}
 
 		/// <summary>

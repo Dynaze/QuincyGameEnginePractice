@@ -12,7 +12,7 @@ namespace QuincyGameEnginePractice.GameScripts
         public override void Initialize()
         {
             base.Initialize();
-            fpsCounter = new FPSCounter(Global.Ref);
+            fpsCounter = new FPSCounter();
             fpsCounter.Initialize();
         }
 
@@ -28,7 +28,8 @@ namespace QuincyGameEnginePractice.GameScripts
 
         public override void DrawUi(SpriteBatch sb)
         {
-            sb.DrawString(orangeKid, $"FPS:{fpsCounter.GetCurrentFPS()}\n{SceneManager.CurrentScene.SceneName}", Transform, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None,0 );
+            sb.DrawString(orangeKid, $"FPS:{fpsCounter.GetCurrentFPS()}\nFrames:{fpsCounter.TotalFrames}\n{SceneManager.GetScene().SceneName}\nBlocks:", 
+                Transform, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None,0 );
         }
     }
 }

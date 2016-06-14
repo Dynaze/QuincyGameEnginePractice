@@ -1,0 +1,51 @@
+﻿using FarseerPhysics;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using QuincyGameEnginePractice.EngineCode;
+
+namespace QuincyGameEnginePractice.GameScripts
+{
+    class Wall : GameObject
+    {
+        Texture2D texture;
+        Body floor;
+        World world;
+        Rectangle ScreenArea;
+        int side;
+
+        public Wall(World world,Rectangle screen,int side)
+        {
+            ScreenArea = screen;
+            this.world = world;
+            this.side = side;
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice,100,ScreenArea.Height,Color.Red);
+            floor = BodyFactory.CreateRectangle(world,ConvertUnits.ToSimUnits(texture.Bounds.Width),ConvertUnits.ToSimUnits(texture.Bounds.Height),1f);
+            floor.BodyType = BodyType.Static;
+            if(side < 1)
+                floor.SetTransform(new Vector2(ScreenArea.X + texture.Width / 2,texture.Height / 2).SimUnits(),0f);
+            if(side > 1)
+                floor.SetTransform(new Vector2(ScreenArea.Width - texture.Width / 2,texture.Height / 2).SimUnits(),0f);
+            floor.FixedRotation = true;
+            floor.Mass = 1.0f;
+        }
+
+        public override void Draw(SpriteBatch sb)
+        {
+            sb.Draw(texture: texture,position: floor.Position.DisUnits(),origin: new Vector2(texture.Width,texture.Height) / 2,color: Color.White);
+        }
+
+        public override void UnloadContent()
+        {
+            texture.Dispose();
+            floor.Dispose();
+        }
+    }
+}

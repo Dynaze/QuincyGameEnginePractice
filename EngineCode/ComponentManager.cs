@@ -11,6 +11,13 @@ namespace QuincyGameEnginePractice.EngineCode
             gameComponents = new List<IQomponent2D>();
         }
 
+        public void Insert(IQomponent2D o)
+        {
+            o.Initialize();
+            o.LoadContent();
+            gameComponents.Add(o);
+        }
+
         public void Add(IQomponent2D component)
         {
             gameComponents.Add(component);

@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using QuincyGameEnginePractice.Scenes;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
     public class Program : Game
     {
-        [STAThread]
         static void Main(string[] args)
         {
             using(var quincy = new Program())
@@ -14,15 +14,20 @@ namespace QuincyGameEnginePractice.EngineCode
         }
 
         GraphicsDeviceManager graphicsDeviceManager;
-        public Random random;
+        public Random random { get; set; }
 
         public Program()
         {
             graphicsDeviceManager = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferWidth = 1280,
-                PreferredBackBufferHeight = 720
+                PreferredBackBufferHeight = 720,
+                SynchronizeWithVerticalRetrace = false,
             };
+            graphicsDeviceManager.IsFullScreen = false;
+            graphicsDeviceManager.PreferMultiSampling = true;
+            IsFixedTimeStep = false;
+            graphicsDeviceManager.ApplyChanges();
             Init();
         }
 
@@ -30,12 +35,11 @@ namespace QuincyGameEnginePractice.EngineCode
         {
             Global.Ref = this;
             random = new Random();
-            SceneManager.init();
         }
 
         protected override void LoadContent()
         {
-            SceneManager.ChangeScene(SceneManager.CurrentScene.SceneName);
+            SceneManager.init();
         }
 
         protected override void Update(GameTime gameTime)
