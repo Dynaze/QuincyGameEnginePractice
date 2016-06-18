@@ -21,7 +21,6 @@ namespace QuincyGameEnginePractice.EngineCode
 		protected virtual void ResetScene()
 		{
 			UnloadContent();
-			componentManager = new ComponentManager();
 			Initialize();
 			LoadContent();
 		}
@@ -49,10 +48,10 @@ namespace QuincyGameEnginePractice.EngineCode
 
 		public virtual void Update(GameTime gameTime)
 		{
-			foreach(var o in componentManager.gameComponents)
+			for(int i = 0; i<componentManager.gameComponents.Count; i++)
 			{
-				if(o.Enabled)
-					o.Update(gameTime);
+				if(componentManager.gameComponents[i].Enabled)
+					componentManager.gameComponents[i].Update(gameTime);
 			}
 		}
 
@@ -76,19 +75,6 @@ namespace QuincyGameEnginePractice.EngineCode
 		}
 
 		/// <summary>
-		/// alternative draw methods that you can use to draw ui elements to the screen that you wish to follow the camera constantly 
-		/// Note: You cant call this by itself because it doesnt have a spritebatch in it
-		/// Must call from scene 
-		/// </summary>
-		public virtual void DrawUi()
-		{
-			foreach(var o in componentManager.gameComponents)
-			{
-				o.DrawUi(spriteBatch);
-			}
-		}
-
-		/// <summary>
 		/// if you override the draw method you can use this to just quickly draw all the objects in order,
 		/// if you already have another spritebatch working with a camera or something
 		/// </summary>
@@ -102,6 +88,20 @@ namespace QuincyGameEnginePractice.EngineCode
 		}
 
 		/// <summary>
+		/// alternative draw methods that you can use to draw ui elements to the screen that you wish to follow the camera constantly 
+		/// Note: You cant call this by itself because it doesnt have a spritebatch in it
+		/// Must call from scene 
+		/// </summary>
+		public virtual void DrawUi()
+		{
+			foreach(var o in componentManager.gameComponents)
+			{ 
+				if(o.UiVisible)
+					o.DrawUi(spriteBatch);
+			}
+		}
+
+		/// <summary>
 		/// unloads all the memory in the scene if you need to restore memory
 		/// </summary>
 		public virtual void UnloadContent()
@@ -110,6 +110,7 @@ namespace QuincyGameEnginePractice.EngineCode
 			{
 				o.UnloadContent();
 			}
+			componentManager.gameComponents.Clear();
 		}
 	}
 }

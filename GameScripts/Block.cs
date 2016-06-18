@@ -10,14 +10,12 @@ namespace QuincyGameEnginePractice.GameScripts
 {
 	class Block : GameObject
 	{
-		public static int Count;
 		Texture2D texture;
 		Body body;
 		World world;
 
 		public Block(World world)
 		{
-			Count++;
 			this.world = world;
 		}
 
@@ -27,7 +25,6 @@ namespace QuincyGameEnginePractice.GameScripts
 			DrawOrder = 1;
 			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
 			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 10f);
-			body.Mass = 10f;
 			body.BodyType = BodyType.Dynamic;
 			body.Restitution = 0.2f;
 			body.SetTransform(new Vector2(1280 / 2, 50).SimUnits(), 0.9f);
@@ -68,7 +65,6 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void UnloadContent()
 		{
-			Count--;
 			texture.Dispose();
 			body.Dispose();
 		}

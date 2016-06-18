@@ -53,13 +53,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="FarseerPhysics MonoGame">
+      <HintPath>Farseer Physics Engine 3.5\bin\WindowsGL\Release\FarseerPhysics MonoGame.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EngineCode\Global.cs" />
-    <Compile Include="EngineCode\IQomponent2D.cs" />
+    <Compile Include="EngineCode\Interfaces\IQomponent2D.cs" />
     <Compile Include="EngineCode\ComponentManager.cs" />
     <Compile Include="EngineCode\BaseScene.cs" />
     <Compile Include="EngineCode\Texture2DExtentions.cs" />
+    <Compile Include="EngineCode\Ui\Button.cs" />
     <Compile Include="EngineCode\Vec2Extensions.cs" />
     <Compile Include="GameScripts\FPSCounter.cs" />
     <Compile Include="GameScripts\GameObject.cs" />
@@ -70,12 +74,13 @@
     <Compile Include="GameScripts\Tile.cs" />
     <Compile Include="GameScripts\TileMap.cs" />
     <Compile Include="GameScripts\Wall.cs" />
-    <Compile Include="Scenes\LevelOne.cs" />
+    <Compile Include="Scenes\PhysicsGame\PhizzleLevelOne.cs" />
+    <Compile Include="Scenes\TestScenes\LevelOne.cs" />
     <Compile Include="EngineCode\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EngineCode\iScene.cs" />
+    <Compile Include="EngineCode\Interfaces\IScene.cs" />
     <Compile Include="EngineCode\SceneManager.cs" />
-    <Compile Include="Scenes\LevelTwo.cs" />
+    <Compile Include="Scenes\TestScenes\LevelTwo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -89,12 +94,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Jacob\Downloads\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj">
-      <Project>{0aad36e3-51a5-4a07-ab60-5c8a66bd38b7}</Project>
-      <Name>Farseer Physics MonoGame</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

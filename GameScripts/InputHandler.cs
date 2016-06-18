@@ -15,17 +15,17 @@ namespace QuincyGameEnginePractice.GameScripts
 		static GamePadState[] currentPadState;
 		static GamePadState[] previousPadState;
 
-		public static KeyboardState CurrentState
+		public static KeyboardState CurrentKeyboard
 		{
 			get { return currentKeyboard; }
 		}
 
-		public static KeyboardState PreviousState
+		public static KeyboardState PreviousKeyboard
 		{
 			get { return previousKeyboard; }
 		}
 
-	    public static MouseState CurrMouse
+	    public static MouseState CurrentMouse
 	    {
             get { return currentMouse; }
 	    }
@@ -72,6 +72,8 @@ namespace QuincyGameEnginePractice.GameScripts
 		public static void Flush()
 		{
 			previousKeyboard = currentKeyboard;
+			previousMouse = currentMouse;
+			previousPadState = currentPadState;
 		}
 
 		public static bool KeyReleased(Keys k)
@@ -87,6 +89,36 @@ namespace QuincyGameEnginePractice.GameScripts
 		public static bool KeyDown(Keys k)
 		{
 			return currentKeyboard.IsKeyDown(k);
+		}
+
+		public static bool MouseLeftClicked()
+		{
+			return currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released;
+		}
+
+		public static bool MouseLeftHeld()
+		{
+			return currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Pressed;
+		}
+
+		public static bool MouseLeftReleased(Keys k)
+		{
+			return currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed;
+		}
+
+		public static bool MouseRightClicked()
+		{
+			return currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released;
+		}
+
+		public static bool MouseRightHeld()
+		{
+			return currentMouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Pressed;
+		}
+
+		public static bool MouseRightReleased(Keys k)
+		{
+			return currentMouse.RightButton == ButtonState.Released && previousMouse.RightButton == ButtonState.Pressed;
 		}
 
 		public static bool MouseStateChanged()
@@ -110,6 +142,12 @@ namespace QuincyGameEnginePractice.GameScripts
 			return false;
 		}
 
+		/// <summary>
+		/// No love for gamepads
+		/// </summary>
+		/// <param name="button"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
 		public static bool ButtonReleased(Buttons button, PlayerIndex index)
 		{
 			return currentPadState[(int)index].IsButtonUp(button) && previousPadState[(int)index].IsButtonDown(button);

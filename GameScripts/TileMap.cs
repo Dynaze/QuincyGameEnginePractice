@@ -42,8 +42,8 @@ namespace QuincyGameEnginePractice.GameScripts
 					position.X = x * 16 * scale.X;
 					position.Y = y * 16 * scale.Y;
 					var Rect = Rectangle.Empty;
-					Rect.X = Global.Ref.random.Next(4) * 16;
-					Rect.Y = Global.Ref.random.Next(4) * 16;
+					Rect.X = Global.random.Next(4) * 16;
+					Rect.Y = Global.random.Next(4) * 16;
 					Rect.Height = 16;
 					Rect.Width = 16;
 					var tile = Tile.Empty();
@@ -52,13 +52,13 @@ namespace QuincyGameEnginePractice.GameScripts
 					tileList.Add(tile);
 				}
 			}
-			renderTarget = Texture2DExtentions.CreateOneTextureFromMany(Global.Ref.GraphicsDevice, tileSheet, SceneManager.GetScene(), 
+			renderTarget = Texture2DExtentions.CreateOneTextureFromMany(Global.Ref.GraphicsDevice, tileSheet, SceneManager.GetScene(),
 				tileList, new Vector2(gridx * 16 * scale.X, gridy * 16 * scale.Y), scale);
 		}
 
 		public override void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture: renderTarget, position: Transform, scale: scale);
+			sb.Draw(texture: renderTarget, position: Transform, scale: scale, color: Color.White);
 		}
 
 		public override void UnloadContent()

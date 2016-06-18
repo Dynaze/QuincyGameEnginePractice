@@ -16,6 +16,14 @@ namespace QuincyGameEnginePractice.EngineCode
         /// if true it will be rendered in the object manager
         /// </summary>
         bool Visible { get; set; }
+		/// <summary>
+		/// if true the ui gets drawn
+		/// </summary>
+		bool UiVisible { get; set; }
+		/// <summary>
+		/// sets the order of render for the draw layer
+		/// </summary>
+		int UiLayer { get; set; }
         /// <summary>
         /// if true the update func will be updated in the object manager
         /// </summary>

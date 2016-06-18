@@ -23,11 +23,25 @@ namespace QuincyGameEnginePractice.GameScripts
 			set { visible = value; }
 		}
 
+		bool uiVisible;
+		public bool UiVisible
+		{
+			get { return uiVisible; }
+			set { uiVisible = value; }
+		}
+
 		int drawOrder;
 		public int DrawOrder
 		{
 			get { return drawOrder; }
 			set { drawOrder = value; }
+		}
+
+		int uiLayer;
+		public int UiLayer
+		{
+			get { return uiLayer; }
+			set { uiLayer = value; }
 		}
 
 		Vector2 transform;
@@ -41,8 +55,10 @@ namespace QuincyGameEnginePractice.GameScripts
 		{
 			Transform = Vector2.Zero;
 			DrawOrder = 0;
+			UiLayer = 0;
 			Enabled = true;
 			Visible = true;
+			UiVisible = true;
 		}
 
 		public virtual void LoadContent()

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuincyGameEnginePractice.EngineCode;
 using QuincyGameEnginePractice.GameScripts;
+using QuincyGameEnginePractice.Scenes.PhysicsGame;
 
 namespace QuincyGameEnginePractice.Scenes
 {
@@ -15,9 +16,10 @@ namespace QuincyGameEnginePractice.Scenes
 
 		InputHandler input;
 
+		/// <summary>
+		/// this shit doesnt work properly
+		/// </summary>
 		TileMap tileMap;
-
-		Text text;
 
 		List<Block> blocks;
 
@@ -27,7 +29,12 @@ namespace QuincyGameEnginePractice.Scenes
 
 		World world;
 
-		float fixedUpdate = 0.0166f;
+		/// <summary>
+		/// 0.033333 = 30 times per second
+		/// 0.016666 = 60 times per second
+		/// 0.008888 = 120 times per second
+		/// </summary>
+		float fixedUpdate = 0.01666f;
 
 		float toUpdate;
 
@@ -48,16 +55,14 @@ namespace QuincyGameEnginePractice.Scenes
 			walls[1] = new Wall(world, ScreenArea, 2);
 			for(int i = 0; i < 10; i++)
 				blocks.Add(new Block(world));
-			text = new Text();
 			input = new InputHandler();
-			tileMap = new TileMap(80, 45);
-			componentManager.Add(tileMap);
+			//tileMap = new TileMap(80, 45);
+			//componentManager.Add(tileMap);
 			foreach(var b in blocks)
 				componentManager.Add(b);
 			foreach(var w in walls)
 				componentManager.Add(w);
 			componentManager.Add(floor);
-			componentManager.Add(text);
 			componentManager.Add(input);
 			base.Initialize();
 		}
@@ -76,12 +81,10 @@ namespace QuincyGameEnginePractice.Scenes
 				if(InputHandler.KeyPressed(Keys.Escape))
 					Global.Ref.Exit();
 				if(InputHandler.KeyPressed(Keys.D2))
-					SceneManager.ChangeScene<LevelTwo>("LevelTwo");
-				if(InputHandler.KeyPressed(Keys.D1))
-					SceneManager.ChangeScene<LevelOne>("LevelOne");
+					SceneManager.ChangeScene<PhizzleLevelOne>("MainMenu");
 				if(InputHandler.KeyPressed(Keys.R))
 					ResetScene();
-				if(InputHandler.CurrMouse.LeftButton == ButtonState.Pressed)
+				if(InputHandler.CurrentMouse.LeftButton == ButtonState.Pressed)
 				{
 					var b = new Block(world);
 					blocks.Add(b);

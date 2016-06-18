@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.Scenes;
+﻿using Microsoft.Xna.Framework;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
@@ -14,7 +11,6 @@ namespace QuincyGameEnginePractice.EngineCode
         }
 
         GraphicsDeviceManager graphicsDeviceManager;
-        public Random random { get; set; }
 
         public Program()
         {
@@ -27,14 +23,12 @@ namespace QuincyGameEnginePractice.EngineCode
             graphicsDeviceManager.IsFullScreen = false;
             graphicsDeviceManager.PreferMultiSampling = true;
             IsFixedTimeStep = false;
-            graphicsDeviceManager.ApplyChanges();
             Init();
         }
 
         void Init()
         {
             Global.Ref = this;
-            random = new Random();
         }
 
         protected override void LoadContent()

@@ -9,7 +9,7 @@ namespace QuincyGameEnginePractice.Scenes
 	{
 		InputHandler input;
 
-		Text fps;
+		Text text;
 
 		public LevelTwo(string scene) : base(scene)
 		{
@@ -21,8 +21,6 @@ namespace QuincyGameEnginePractice.Scenes
 			Global.Ref.IsMouseVisible = true;
 			SceneBackgroundColor = Color.Turquoise;
 			input = new InputHandler();
-			fps = new Text();
-			componentManager.Add(fps);
 			componentManager.Add(input);
 			base.Initialize();
 		}
@@ -38,10 +36,10 @@ namespace QuincyGameEnginePractice.Scenes
 		{
 			Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
 			spriteBatch.Begin();
-			base.DrawObjects();
+			DrawObjects();
 			spriteBatch.End();
 			spriteBatch.Begin();
-			base.DrawUi();
+			DrawUi();
 			spriteBatch.End();
 		}
 
