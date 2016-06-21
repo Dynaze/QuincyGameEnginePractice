@@ -61,9 +61,10 @@
     <Compile Include="EngineCode\Global.cs" />
     <Compile Include="EngineCode\Interfaces\IQomponent2D.cs" />
     <Compile Include="EngineCode\ComponentManager.cs" />
-    <Compile Include="EngineCode\BaseScene.cs" />
+    <Compile Include="EngineCode\Scene.cs" />
     <Compile Include="EngineCode\Texture2DExtentions.cs" />
     <Compile Include="EngineCode\Ui\Button.cs" />
+    <Compile Include="EngineCode\Ui\Label.cs" />
     <Compile Include="EngineCode\Vec2Extensions.cs" />
     <Compile Include="GameScripts\FPSCounter.cs" />
     <Compile Include="GameScripts\GameObject.cs" />
@@ -75,12 +76,14 @@
     <Compile Include="GameScripts\TileMap.cs" />
     <Compile Include="GameScripts\Wall.cs" />
     <Compile Include="Scenes\PhysicsGame\PhizzleLevelOne.cs" />
-    <Compile Include="Scenes\TestScenes\LevelOne.cs" />
+    <Compile Include="Scenes\PhysicsGame\PhizzleLevelTwo.cs" />
+    <Compile Include="Scenes\TestScenes\BallPitLevel.cs" />
     <Compile Include="EngineCode\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EngineCode\Interfaces\IScene.cs" />
     <Compile Include="EngineCode\SceneManager.cs" />
     <Compile Include="Scenes\TestScenes\LevelTwo.cs" />
+    <Compile Include="EngineCode\QDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,47 +1,53 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using QuincyGameEnginePractice.EngineCode;
 using QuincyGameEnginePractice.GameScripts;
 
 namespace QuincyGameEnginePractice.Scenes
 {
-	class LevelTwo : BaseScene
+	class LevelTwo : Scene
 	{
 		InputHandler input;
 
 		Text text;
 
-		public LevelTwo(string scene) : base(scene)
+		public override void LoadContent()
 		{
 
 		}
 
-		public override void Initialize()
+		public override void Start()
 		{
 			Global.Ref.IsMouseVisible = true;
-			SceneBackgroundColor = Color.Turquoise;
+			BackgroundColor = Color.Turquoise;
 			input = new InputHandler();
 			componentManager.Add(input);
-			base.Initialize();
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			if(InputHandler.KeyPressed(Keys.D1))
-				SceneManager.ChangeScene<LevelOne>("LevelOne");
-			base.Update(gameTime);
+				SceneManager.ChangeScene("LevelOne");
 		}
 
 		public override void Draw()
 		{
-			Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
+			Global.Ref.GraphicsDevice.Clear(BackgroundColor);
 			spriteBatch.Begin();
-			DrawObjects();
 			spriteBatch.End();
 			spriteBatch.Begin();
-			DrawUi();
 			spriteBatch.End();
 		}
 
+		public override void DrawUi()
+		{
+
+		}
+
+		public override void UnloadContent()
+		{
+
+		}
 	}
 }

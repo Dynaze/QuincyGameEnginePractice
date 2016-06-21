@@ -14,14 +14,13 @@ namespace QuincyGameEnginePractice.GameScripts
 		Body body;
 		World world;
 
-		public Block(World world)
+		public Block(World world) : base(true)
 		{
 			this.world = world;
 		}
 
-		public override void Initialize()
+		public override void Start()
 		{
-			base.Initialize();
 			DrawOrder = 1;
 			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
 			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 10f);
@@ -63,7 +62,7 @@ namespace QuincyGameEnginePractice.GameScripts
 			sb.Draw(texture: texture, position: body.Position.DisUnits(), origin: new Vector2(texture.Width, texture.Height) / 2, color: Color.White, rotation: body.Rotation, layerDepth: DrawOrder);
 		}
 
-		public override void UnloadContent()
+		public override void Dispose()
 		{
 			texture.Dispose();
 			body.Dispose();

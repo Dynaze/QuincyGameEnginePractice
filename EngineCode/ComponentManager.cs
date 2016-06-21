@@ -1,31 +1,41 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
-    public class ComponentManager
-    {
-        public List<IQomponent2D> gameComponents { get; }
+	public class ComponentManager
+	{
+		public List<IQomponent2D> gameObjects { get; }
 
-        public ComponentManager()
-        {
-            gameComponents = new List<IQomponent2D>();
-        }
+		public ComponentManager()
+		{
+			gameObjects = new List<IQomponent2D>();
+		}
 
-        public void Insert(IQomponent2D o)
-        {
-            o.Initialize();
-            o.LoadContent();
-            gameComponents.Add(o);
-        }
+		public int Count()
+		{
+			return gameObjects.Count;
+		}
 
-        public void Add(IQomponent2D component)
-        {
-            gameComponents.Add(component);
-        }
+		public void Insert(IQomponent2D o)
+		{
+			o.Start();
+			gameObjects.Add(o);
+		}
 
-        public void Remove(IQomponent2D component)
-        {
-            gameComponents.Remove(component);
-        }
-    }
+		public void Add(IQomponent2D component)
+		{
+			gameObjects.Add(component);
+		}
+
+		public void Clear()
+		{
+			gameObjects.Clear();
+		}
+
+		public void Remove(IQomponent2D component)
+		{
+			gameObjects.Remove(component);
+		}
+	}
 }

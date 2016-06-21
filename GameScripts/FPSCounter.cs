@@ -34,13 +34,9 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		Queue<float> sampleBuffer;
 
-		public FPSCounter()
-		{
-			Enabled = true;
-			Visible = false;
-		}
+		public FPSCounter() : base(true) { }
 
-		public override void Initialize()
+		public override void Start()
 		{
 			sampleBuffer = new Queue<float>();
 		}

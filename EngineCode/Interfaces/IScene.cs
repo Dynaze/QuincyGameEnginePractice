@@ -1,16 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
-    public interface IScene
-    {
-        ComponentManager componentManager { get; set; }
-        string SceneName { get; set; }
-        void Initialize();
-        void LoadContent();
-        void Draw();
-        void DrawUi();
-        void Update(GameTime gameTime);
-        void UnloadContent();
-    }
+	public interface IScene
+	{
+		ComponentManager componentManager { get; set; }
+		SpriteBatch spriteBatch { get; }
+		Color BackgroundColor { get; set; }
+		Rectangle ScreenArea { get; set; }
+		string SceneName { get; set; }
+		void LoadContent();
+		void Start();
+		void Draw();
+		void DrawUi();
+		void Update(GameTime gameTime);
+		void UnloadContent();
+	}
 }

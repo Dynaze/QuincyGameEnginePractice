@@ -12,12 +12,12 @@ namespace QuincyGameEnginePractice.EngineCode
             var render = new RenderTarget2D(gd,(int)vec.X,(int)vec.Y);
             gd.SetRenderTarget(render);
             gd.Clear(Color.Transparent);
-            ((BaseScene)scene).spriteBatch.Begin();
+            ((Scene)scene).spriteBatch.Begin();
             foreach(var t in tiles)
             {
-                ((BaseScene)scene).spriteBatch.Draw(texture: texture, position: t.Transform, sourceRectangle: t.renderRectangle, origin: Vector2.Zero, scale: scale);
+                ((Scene)scene).spriteBatch.Draw(texture: texture, position: t.Transform, sourceRectangle: t.renderRectangle, origin: Vector2.Zero, scale: scale);
             }
-            ((BaseScene)scene).spriteBatch.End();
+            ((Scene)scene).spriteBatch.End();
             gd.SetRenderTarget(null);
             return render;
         }

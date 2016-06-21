@@ -12,21 +12,16 @@ namespace QuincyGameEnginePractice.GameScripts
 		Vector2 scale;
 		int gridx, gridy;
 
-		public TileMap(int gridx, int gridy)
+		public TileMap(int gridx, int gridy) : base(true)
 		{
 			this.gridx = gridx;
 			this.gridy = gridy;
 		}
 
-		public override void Initialize()
+		public override void Start()
 		{
-			Transform = Vector2.Zero;
+			Position = Vector2.Zero;
 			scale = new Vector2(1f);
-			base.Initialize();
-		}
-
-		public override void LoadContent()
-		{
 			tileSheet = Global.Ref.Content.Load<Texture2D>(Global.pipeline + "Sprites/TileSheet");
 			CreateGrid();
 		}
@@ -58,10 +53,10 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture: renderTarget, position: Transform, scale: scale, color: Color.White);
+			sb.Draw(texture: renderTarget, position: Position, scale: scale, color: Color.White);
 		}
 
-		public override void UnloadContent()
+		public override void Dispose()
 		{
 			tileSheet.Dispose();
 			renderTarget.Dispose();

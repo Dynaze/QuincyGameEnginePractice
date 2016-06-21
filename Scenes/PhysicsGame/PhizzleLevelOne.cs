@@ -2,13 +2,15 @@
 using QuincyGameEnginePractice.EngineCode;
 using QuincyGameEnginePractice.EngineCode.Ui;
 using QuincyGameEnginePractice.GameScripts;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 {
 	/// <summary>
 	/// This is like going to be the main menu for the game, learn how to click on ui elements like buttons
 	/// </summary>
-	class PhizzleLevelOne : BaseScene
+	class PhizzleLevelOne : Scene
 	{
 		InputHandler input;
 
@@ -16,20 +18,21 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 		Button StartGame;
 		Button Quit;
 
-		Rectangle ScreenArea;
+		Texture2D wall;
 
-		public PhizzleLevelOne(string scene) : base(scene)
+		public override void LoadContent()
 		{
-
-		}
-
-		public override void Initialize()
-		{
-			//Make sure mous is visible
 			if(!Global.Ref.IsMouseVisible)
 				Global.Ref.IsMouseVisible = true;
+			BackgroundColor = Color.CornflowerBlue;
+			componentManager = new ComponentManager();
+			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
 			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
-			SceneBackgroundColor = Color.CornflowerBlue;
+			wall = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 200, 100, Color.GreenYellow);
+		}
+
+		public override void Start()
+		{
 			input = new InputHandler();
 			MAINMENU = Button.NewButton(message: "WELCOME TO PHIZZLE", width: 400, height: 100, color: Color.Red,
 				scale: new Vector2(2), position: new Vector2(ScreenArea.Width / 2 - 400, ScreenArea.Height / 2 - 300));
@@ -39,31 +42,40 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 			componentManager.Add(MAINMENU);
 			componentManager.Add(StartGame);
 			componentManager.Add(Quit);
-			base.Initialize();
-		}
-
-		public override void LoadContent()
-		{
-			base.LoadContent();
 			StartGame.Clicked += () =>
 			{
-				SceneManager.ChangeScene<LevelOne>("LevelOne");
+				SceneManager.ChangeScene("Test");
 			};
 			Quit.Clicked += () =>
 			{
 				Global.Ref.Exit();
 			};
+			StartStuff();
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			UpdateStuff(gameTime);
 		}
 
 		public override void Draw()
 		{
-			Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
+			Clear();
 			spriteBatch.Begin();
-			DrawObjects();
+			DrawStuff();
 			spriteBatch.End();
+		}
+
+		public override void DrawUi()
+		{
 			spriteBatch.Begin();
-			DrawUi();
+			DrawUiStuff();
 			spriteBatch.End();
+		}
+
+		public override void UnloadContent()
+		{
+			UnloadStuff();
 		}
 	}
 }

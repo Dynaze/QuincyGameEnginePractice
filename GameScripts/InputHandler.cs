@@ -25,15 +25,15 @@ namespace QuincyGameEnginePractice.GameScripts
 			get { return previousKeyboard; }
 		}
 
-	    public static MouseState CurrentMouse
-	    {
-            get { return currentMouse; }
-	    }
+		public static MouseState CurrentMouse
+		{
+			get { return currentMouse; }
+		}
 
-	    public static MouseState PreviousMouse
-	    {
-            get { return previousMouse; }
-	    }
+		public static MouseState PreviousMouse
+		{
+			get { return previousMouse; }
+		}
 
 		public static GamePadState[] CurrentPadState
 		{
@@ -45,9 +45,9 @@ namespace QuincyGameEnginePractice.GameScripts
 			get { return previousPadState; }
 		}
 
-		public InputHandler()
+		public InputHandler() : base(true)
 		{
-			Enabled = true;
+			IsEnabled = true;
 			currentKeyboard = Keyboard.GetState();
 			currentMouse = Mouse.GetState();
 			currentPadState = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];

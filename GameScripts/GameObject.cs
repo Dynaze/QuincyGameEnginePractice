@@ -9,22 +9,29 @@ namespace QuincyGameEnginePractice.GameScripts
 	/// </summary>
 	public class GameObject : IQomponent2D
 	{
+		bool awake;
+		public bool IsStart
+		{
+			get { return awake; }
+			set { awake = value; }
+		}
+
 		bool enabled;
-		public bool Enabled
+		public bool IsEnabled
 		{
 			get { return enabled; }
 			set { enabled = value; }
 		}
 
 		bool visible;
-		public bool Visible
+		public bool IsVisible
 		{
 			get { return visible; }
 			set { visible = value; }
 		}
 
 		bool uiVisible;
-		public bool UiVisible
+		public bool IsUiVisible
 		{
 			get { return uiVisible; }
 			set { uiVisible = value; }
@@ -38,30 +45,34 @@ namespace QuincyGameEnginePractice.GameScripts
 		}
 
 		int uiLayer;
-		public int UiLayer
+		public int UiOrder
 		{
 			get { return uiLayer; }
 			set { uiLayer = value; }
 		}
 
-		Vector2 transform;
-		public Vector2 Transform
+		Vector2 position;
+		public Vector2 Position
 		{
-			get { return transform; }
-			set { transform = value; }
+			get { return position; }
+			set { position = value; }
 		}
 
-		public virtual void Initialize()
+		public GameObject(bool defaultStart)
 		{
-			Transform = Vector2.Zero;
-			DrawOrder = 0;
-			UiLayer = 0;
-			Enabled = true;
-			Visible = true;
-			UiVisible = true;
+			if(defaultStart)
+			{
+				Position = Vector2.Zero;
+				DrawOrder = 0;
+				UiOrder = 0;
+				IsEnabled = true;
+				IsVisible = true;
+				IsUiVisible = true;
+				IsStart = true;
+			}
 		}
 
-		public virtual void LoadContent()
+		public virtual void Start()
 		{
 
 		}
@@ -81,7 +92,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		}
 
-		public virtual void UnloadContent()
+		public virtual void Dispose()
 		{
 
 		}

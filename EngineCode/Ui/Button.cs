@@ -22,20 +22,12 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 		public delegate void ClickEventHandler();
 		public event ClickEventHandler Clicked;
 
-		public override void Initialize()
-		{
-			DrawOrder = 0;
-			UiLayer = 0;
-			Enabled = true;
-			Visible = true;
-			UiVisible = true;
-		}
+		public Button() : base(true) { }
 
-		public override void LoadContent()
+		public override void Start()
 		{
 			text.font = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
 			text.color = Color.Black;
-			text.scale = Vector2.One;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -52,13 +44,13 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 			sb.DrawString(text.font, text.text, bounds.Location.ToVector2(), text.color, rotation, text.origin, scale, SpriteEffects.None, 0);
 		}
 
-		public override void UnloadContent()
+		public override void Dispose()
 		{
 			buttonTexture.Dispose();
 		}
 
 
-		public static Button NewButton(Texture2D texture = null,string message = null, Color? color = null,
+		public static Button NewButton(Texture2D texture = null, string message = null, Color? color = null,
 										Vector2? position = null, Vector2? scale = null, Vector2? origin = null,
 										int? width = null, int? height = null, float? rotation = null)
 		{
@@ -87,11 +79,11 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 				}
 				if(position != null)
 				{
-					button.Transform = position.Value;
+					button.Position = position.Value;
 				}
 				else
 				{
-					button.Transform = Vector2.Zero;
+					button.Position = Vector2.Zero;
 				}
 			}
 			if(rotation != null)

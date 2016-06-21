@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,10 +9,8 @@ using QuincyGameEnginePractice.Scenes.PhysicsGame;
 
 namespace QuincyGameEnginePractice.Scenes
 {
-	public class LevelOne : BaseScene
+	public class BallPitLevel : Scene
 	{
-		public Rectangle ScreenArea;
-
 		InputHandler input;
 
 		/// <summary>
@@ -38,15 +35,16 @@ namespace QuincyGameEnginePractice.Scenes
 
 		float toUpdate;
 
-		public LevelOne(string level) : base(level)
+		public override void LoadContent()
 		{
-
+			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
+			componentManager = new ComponentManager();
+			BackgroundColor = Color.CornflowerBlue;
+			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
 		}
 
-		public override void Initialize()
+		public override void Start()
 		{
-			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
-			SceneBackgroundColor = Color.CornflowerBlue;
 			world = new World(new Vector2(0f, 10f));
 			blocks = new List<Block>();
 			walls = new Wall[2];
@@ -56,6 +54,7 @@ namespace QuincyGameEnginePractice.Scenes
 			for(int i = 0; i < 10; i++)
 				blocks.Add(new Block(world));
 			input = new InputHandler();
+			componentManager.Add(input);
 			//tileMap = new TileMap(80, 45);
 			//componentManager.Add(tileMap);
 			foreach(var b in blocks)
@@ -63,8 +62,7 @@ namespace QuincyGameEnginePractice.Scenes
 			foreach(var w in walls)
 				componentManager.Add(w);
 			componentManager.Add(floor);
-			componentManager.Add(input);
-			base.Initialize();
+			StartStuff();
 		}
 
 		public override void Update(GameTime gameTime)
@@ -81,28 +79,37 @@ namespace QuincyGameEnginePractice.Scenes
 				if(InputHandler.KeyPressed(Keys.Escape))
 					Global.Ref.Exit();
 				if(InputHandler.KeyPressed(Keys.D2))
-					SceneManager.ChangeScene<PhizzleLevelOne>("MainMenu");
+					SceneManager.ChangeScene("MainMenu");
 				if(InputHandler.KeyPressed(Keys.R))
-					ResetScene();
+					SceneManager.ResetScene();
 				if(InputHandler.CurrentMouse.LeftButton == ButtonState.Pressed)
 				{
 					var b = new Block(world);
 					blocks.Add(b);
 					componentManager.Insert(b);
 				}
-				base.Update(gameTime);
+				UpdateStuff(gameTime);
 			}
 		}
 
 		public override void Draw()
 		{
-			Global.Ref.GraphicsDevice.Clear(SceneBackgroundColor);
+			Global.Ref.GraphicsDevice.Clear(BackgroundColor);
 			spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-			DrawObjects();
+			DrawStuff();
 			spriteBatch.End();
+		}
+
+		public override void DrawUi()
+		{
 			spriteBatch.Begin();
-			DrawUi();
+			DrawUiStuff();
 			spriteBatch.End();
+		}
+
+		public override void UnloadContent()
+		{
+			UnloadStuff();
 		}
 	}
 }

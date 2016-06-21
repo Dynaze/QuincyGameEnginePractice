@@ -1,32 +1,28 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using QuincyGameEnginePractice.Scenes;
-using Microsoft.Xna.Framework.Graphics;
 using QuincyGameEnginePractice.Scenes.PhysicsGame;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
+	/// <summary>
+	/// static class that handles all the scenes in the game, right now you have to statically add everything in here for it to be seen as a gamescreen outside of here,
+	///  but I want to make this a lot better in the future
+	/// </summary>
 	static class SceneManager
 	{
-		static Dictionary<string, IScene> Scenes;
+		static QDictionary Scenes;
 
 		static IScene CurrentScene;
 
-		static PhizzleLevelOne Menu;
-
-		static LevelOne levelOne;
-
 		public static void init()
 		{
-			Scenes = new Dictionary<string, IScene>();
-			Menu = new PhizzleLevelOne("MainMenu");
-			levelOne = new LevelOne("LevelOne");
-			Scenes.Add(Menu.SceneName, Menu);
-			Scenes.Add(levelOne.SceneName, levelOne);
-			CurrentScene = Scenes[Menu.SceneName];
-			Initialize();
+			Scenes = new QDictionary();
+			QDictionary.Add("MainMenu", new PhizzleLevelOne());
+			//QDictionary.Add("LevelOne", new PhizzleLevelTwo());
+			QDictionary.Add("Test", new BallPitLevel());
+			CurrentScene = QDictionary.ChangeScene("MainMenu");
 			LoadContent();
+			Start();
 		}
 
 		public static IScene GetScene()
@@ -34,7 +30,7 @@ namespace QuincyGameEnginePractice.EngineCode
 			return CurrentScene;
 		}
 
-		public static void ChangeScene<T>(string scene) where T : IScene
+		public static void ChangeScene(string scene)
 		{
 			if(GetScene().SceneName != scene)
 			{
@@ -42,16 +38,17 @@ namespace QuincyGameEnginePractice.EngineCode
 				//Reload the scene
 				//http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
 				//REEEEEFLECTION
-				Scenes[scene] = (T)Activator.CreateInstance(typeof(T), scene);
-				CurrentScene = Scenes[scene];
-				Initialize();
+				CurrentScene = QDictionary.ChangeScene(scene);// = (T)Activator.CreateInstance(typeof(T));
 				LoadContent();
+				Start();
 			}
 		}
 
-		static void Initialize()
+		public static void ResetScene()
 		{
-			CurrentScene.Initialize();
+			UnloadContent();
+			LoadContent();
+			Start();
 		}
 
 		static void LoadContent()
@@ -64,13 +61,14 @@ namespace QuincyGameEnginePractice.EngineCode
 			CurrentScene.Update(gameTime);
 		}
 
+		static void Start()
+		{
+			CurrentScene.Start();
+		}
+
 		public static void Draw()
 		{
 			CurrentScene.Draw();
-		}
-
-		public static void DrawUi()
-		{
 			CurrentScene.DrawUi();
 		}
 
@@ -81,6 +79,7 @@ namespace QuincyGameEnginePractice.EngineCode
 
 		public static void GlobalUnloadContent()
 		{
+			UnloadContent();
 			Global.Ref.Content.Dispose();
 		}
 	}
