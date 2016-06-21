@@ -16,32 +16,29 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 
 		Button MAINMENU;
 		Button StartGame;
+		Button Options;
 		Button Quit;
 
-		Texture2D wall;
+		SpriteFont orangeKid;
 
 		public override void LoadContent()
 		{
-			if(!Global.Ref.IsMouseVisible)
-				Global.Ref.IsMouseVisible = true;
+			if(!Global.Ref.IsMouseVisible) Global.Ref.IsMouseVisible = true;
 			BackgroundColor = Color.CornflowerBlue;
-			componentManager = new ComponentManager();
-			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
-			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
-			wall = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 200, 100, Color.GreenYellow);
+			orangeKid = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
 		}
 
 		public override void Start()
 		{
 			input = new InputHandler();
-			MAINMENU = Button.NewButton(message: "WELCOME TO PHIZZLE", width: 400, height: 100, color: Color.Red,
-				scale: new Vector2(2), position: new Vector2(ScreenArea.Width / 2 - 400, ScreenArea.Height / 2 - 300));
-			StartGame = Button.NewButton(message: "Start Game!", width: 150, height: 50, color: Color.White, position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2));
-			Quit = Button.NewButton(message: "Quit", color: Color.White, width: 150, height: 50, position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 200));
-			componentManager.Add(input);
-			componentManager.Add(MAINMENU);
-			componentManager.Add(StartGame);
-			componentManager.Add(Quit);
+			MAINMENU = Button.NewButton(font: orangeKid, message: "WELCOME TO PHIZZLE", width: 400, height: 100, color: Color.Red, position: new Vector2(ScreenArea.Width / 2 - 200, ScreenArea.Height / 2 - 200));
+			StartGame = Button.NewButton(font: orangeKid, message: "Start Game!", width: 150, height: 50, color: Color.White, position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2));
+			Options = Button.NewButton(font: orangeKid, message: "Options", width: 150, height: 50, color: Color.White, position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 100));
+			Quit = Button.NewButton(font: orangeKid, message: "Quit", width: 150, height: 50, color: Color.White, position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 200));
+			Options.Clicked += () =>
+			{
+				SceneManager.ChangeScene("Options");
+			};
 			StartGame.Clicked += () =>
 			{
 				SceneManager.ChangeScene("Test");
@@ -50,7 +47,6 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 			{
 				Global.Ref.Exit();
 			};
-			StartStuff();
 		}
 
 		public override void Update(GameTime gameTime)

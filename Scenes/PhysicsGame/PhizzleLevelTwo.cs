@@ -5,7 +5,7 @@ using QuincyGameEnginePractice.GameScripts;
 using QuincyGameEnginePractice.EngineCode.Ui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 {
@@ -23,9 +23,11 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 
 		FPSCounter fpsCounter;
 
+		SpriteFont orangeKid;
+
 		public override void LoadContent()
 		{
-
+			orangeKid = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
 		}
 
 		public override void Start()
@@ -38,7 +40,7 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 			floor.width = 500;
 			floor.height = 100;
 			fpsCounter = new FPSCounter();
-			label = Label.CreateLabel(scale: new Vector2(2), color: Color.Black);
+			label = Label.CreateLabel(orangeKid, scale: new Vector2(2), color: Color.Black);
 			componentManager.Add(input);
 			componentManager.Add(floor);
 			componentManager.Add(fpsCounter);

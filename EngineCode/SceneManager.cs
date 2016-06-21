@@ -14,36 +14,61 @@ namespace QuincyGameEnginePractice.EngineCode
 
 		static IScene CurrentScene;
 
-		public static void init()
+		/// <summary>
+		/// call this once to setup a new scenemanager for your instance of the game
+		/// call again to remove all the scenes and restart all of them
+		/// </summary>
+		/// <returns>The scene manager.</returns>
+		public static void NewSceneManager()
 		{
 			Scenes = new QDictionary();
 			QDictionary.Add("MainMenu", new PhizzleLevelOne());
-			//QDictionary.Add("LevelOne", new PhizzleLevelTwo());
+			QDictionary.Add("Options", new Options());
 			QDictionary.Add("Test", new BallPitLevel());
-			CurrentScene = QDictionary.ChangeScene("MainMenu");
-			LoadContent();
-			Start();
+			ChangeScene("MainMenu");
 		}
 
+		/// <summary>
+		/// get the current scene from anywhere
+		/// </summary>
+		/// <returns>The scene.</returns>
 		public static IScene GetScene()
 		{
 			return CurrentScene;
 		}
 
+		/// <summary>
+		/// change the current scene to another scene that you have for you levels
+		/// </summary>
+		/// <returns>The scene.</returns>
+		/// <param name="scene">Scene.</param>
 		public static void ChangeScene(string scene)
 		{
-			if(GetScene().SceneName != scene)
+			if(CurrentScene == null)
 			{
-				CurrentScene.UnloadContent();
-				//Reload the scene
-				//http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
-				//REEEEEFLECTION
-				CurrentScene = QDictionary.ChangeScene(scene);// = (T)Activator.CreateInstance(typeof(T));
+				CurrentScene = QDictionary.ChangeScene(scene);
 				LoadContent();
 				Start();
 			}
+			else
+			{
+				if(GetScene().SceneName != scene)
+				{
+					CurrentScene.UnloadContent();
+					//Reload the scene
+					//http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
+					//REEEEEFLECTION
+					CurrentScene = QDictionary.ChangeScene(scene);// = (T)Activator.CreateInstance(typeof(T));
+					LoadContent();
+					Start();
+				}
+			}
 		}
 
+		/// <summary>
+		/// resets the current scene
+		/// </summary>
+		/// <returns>The scene.</returns>
 		public static void ResetScene()
 		{
 			UnloadContent();
@@ -51,32 +76,54 @@ namespace QuincyGameEnginePractice.EngineCode
 			Start();
 		}
 
+		/// <summary>
+		/// calls the scenes loadcontent method that inits componentManager and a spriteBatch
+		/// </summary>
+		/// <returns>The content.</returns>
 		static void LoadContent()
 		{
-			CurrentScene.LoadContent();
+			CurrentScene.OnLoadContent();
 		}
 
+		/// <summary>
+		/// gets called by xna so you dont need to call this
+		/// </summary>
+		/// <param name="gameTime">Game time.</param>
 		public static void Update(GameTime gameTime)
 		{
-			CurrentScene.Update(gameTime);
+			CurrentScene.OnUpdate(gameTime);
 		}
 
+		/// <summary>
+		/// calls the start function in the scene that starts all the objects in the scene
+		/// </summary>
 		static void Start()
 		{
-			CurrentScene.Start();
+			CurrentScene.OnStart();
 		}
 
+		/// <summary>
+		/// gets called by xna so you also dont need to call this
+		/// </summary>
 		public static void Draw()
 		{
-			CurrentScene.Draw();
-			CurrentScene.DrawUi();
+			CurrentScene.OnDraw();
+			CurrentScene.OnDrawUi();
 		}
 
+		/// <summary>
+		/// unload all the content in the scene and then can load a new scene into memory
+		/// </summary>
+		/// <returns>The content.</returns>
 		static void UnloadContent()
 		{
-			CurrentScene.UnloadContent();
+			CurrentScene.OnUnloadContent();
 		}
 
+		/// <summary>
+		/// this gets called automatically by xna after everything else is disposed then the game closes
+		/// </summary>
+		/// <returns>The unload content.</returns>
 		public static void GlobalUnloadContent()
 		{
 			UnloadContent();

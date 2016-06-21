@@ -36,6 +36,7 @@ namespace QuincyGameEnginePractice.EngineCode
 		public void Remove(IQomponent2D component)
 		{
 			gameObjects.Remove(component);
+			component.Dispose();
 		}
 	}
 }

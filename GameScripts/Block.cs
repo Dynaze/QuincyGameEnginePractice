@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuincyGameEnginePractice.EngineCode;
+using QuincyGameEnginePractice.Scenes;
 
 namespace QuincyGameEnginePractice.GameScripts
 {
@@ -14,6 +15,8 @@ namespace QuincyGameEnginePractice.GameScripts
 		Body body;
 		World world;
 
+		Rectangle ScreenArea;
+
 		public Block(World world) : base(true)
 		{
 			this.world = world;
@@ -21,12 +24,13 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void Start()
 		{
+			ScreenArea = SceneManager.GetScene().ScreenArea;
 			DrawOrder = 1;
 			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
 			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 10f);
 			body.BodyType = BodyType.Dynamic;
 			body.Restitution = 0.2f;
-			body.SetTransform(new Vector2(1280 / 2, 50).SimUnits(), 0.9f);
+			body.SetTransform(new Vector2(ScreenArea.Width / 2, 50).SimUnits(), 0.9f);
 			body.SleepingAllowed = true;
 			body.Friction = 1.0f;
 		}
@@ -54,6 +58,11 @@ namespace QuincyGameEnginePractice.GameScripts
 			}
 			if(toMove != Vector2.Zero)
 				body.ApplyForce(toMove);
+			if(!ScreenArea.Contains(body.Position.DisUnits()))
+			{
+				world.RemoveBody(body);
+				GetComponents.components.Remove(this);
+			}
 		}
 
 		public override void Draw(SpriteBatch sb)

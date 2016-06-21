@@ -8,7 +8,7 @@ namespace QuincyGameEnginePractice.GameScripts
 	public class TileMap : GameObject
 	{
 		Texture2D tileSheet;
-		RenderTarget2D renderTarget;
+		static RenderTarget2D renderTarget;
 		Vector2 scale;
 		int gridx, gridy;
 
@@ -20,8 +20,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void Start()
 		{
-			Position = Vector2.Zero;
-			scale = new Vector2(1f);
+			scale = Vector2.One;
 			tileSheet = Global.Ref.Content.Load<Texture2D>(Global.pipeline + "Sprites/TileSheet");
 			CreateGrid();
 		}
@@ -47,8 +46,9 @@ namespace QuincyGameEnginePractice.GameScripts
 					tileList.Add(tile);
 				}
 			}
-			renderTarget = Texture2DExtentions.CreateOneTextureFromMany(Global.Ref.GraphicsDevice, tileSheet, SceneManager.GetScene(),
-				tileList, new Vector2(gridx * 16 * scale.X, gridy * 16 * scale.Y), scale);
+			if(renderTarget == null)
+				renderTarget = Texture2DExtentions.CreateOneTextureFromMany(Global.Ref.GraphicsDevice, tileSheet, SceneManager.GetScene(),
+					tileList, new Vector2(gridx * 16 * scale.X, gridy * 16 * scale.Y), scale);
 		}
 
 		public override void Draw(SpriteBatch sb)
@@ -59,7 +59,7 @@ namespace QuincyGameEnginePractice.GameScripts
 		public override void Dispose()
 		{
 			tileSheet.Dispose();
-			renderTarget.Dispose();
+			//renderTarget.Dispose();
 		}
 	}
 }

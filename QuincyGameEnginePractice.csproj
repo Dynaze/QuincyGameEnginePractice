@@ -84,6 +84,9 @@
     <Compile Include="EngineCode\SceneManager.cs" />
     <Compile Include="Scenes\TestScenes\LevelTwo.cs" />
     <Compile Include="EngineCode\QDictionary.cs" />
+    <Compile Include="Scenes\PhysicsGame\Options.cs" />
+    <Compile Include="EngineCode\GetComponents.cs" />
+    <Compile Include="Scenes\TestScenes\blocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

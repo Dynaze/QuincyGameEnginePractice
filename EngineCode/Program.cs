@@ -28,7 +28,7 @@ namespace QuincyGameEnginePractice.EngineCode
 		{
 			IsFixedTimeStep = false;
 			Global.Ref = this;
-			SceneManager.init();
+			SceneManager.NewSceneManager();
 		}
 
 		protected override void Update(GameTime gameTime)

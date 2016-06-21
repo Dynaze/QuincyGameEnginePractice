@@ -11,10 +11,16 @@ namespace QuincyGameEnginePractice.EngineCode
 		Rectangle ScreenArea { get; set; }
 		string SceneName { get; set; }
 		void LoadContent();
+		void OnLoadContent();
 		void Start();
+		void OnStart();
 		void Draw();
+		void OnDraw();
 		void DrawUi();
+		void OnDrawUi();
 		void Update(GameTime gameTime);
+		void OnUpdate(GameTime gameTime);
 		void UnloadContent();
+		void OnUnloadContent();
 	}
 }

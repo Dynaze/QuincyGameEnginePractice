@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
@@ -34,9 +33,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		Queue<float> sampleBuffer;
 
-		public FPSCounter() : base(true) { }
-
-		public override void Start()
+		public FPSCounter() : base(true)
 		{
 			sampleBuffer = new Queue<float>();
 		}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using QuincyGameEnginePractice.GameScripts;
+using System.Runtime.CompilerServices;
 
 namespace QuincyGameEnginePractice.EngineCode.Ui
 {
@@ -22,11 +23,10 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 		public delegate void ClickEventHandler();
 		public event ClickEventHandler Clicked;
 
-		public Button() : base(true) { }
+		Button() : base(true) { }
 
 		public override void Start()
 		{
-			text.font = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
 			text.color = Color.Black;
 		}
 
@@ -40,7 +40,7 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 
 		public override void DrawUi(SpriteBatch sb)
 		{
-			sb.Draw(texture: buttonTexture, position: bounds.Location.ToVector2(), color: color, scale: scale, rotation: rotation, origin: origin);
+			sb.Draw(buttonTexture, bounds.Location.ToVector2(), color: color, scale: scale, rotation: rotation, origin: origin);
 			sb.DrawString(text.font, text.text, bounds.Location.ToVector2(), text.color, rotation, text.origin, scale, SpriteEffects.None, 0);
 		}
 
@@ -49,12 +49,19 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 			buttonTexture.Dispose();
 		}
 
-
-		public static Button NewButton(Texture2D texture = null, string message = null, Color? color = null,
+		public static Button NewButton(Texture2D texture = null, SpriteFont font = null, string message = null, Color? color = null,
 										Vector2? position = null, Vector2? scale = null, Vector2? origin = null,
 										int? width = null, int? height = null, float? rotation = null)
 		{
 			var button = new Button();
+			if(font == null)
+			{
+				button.text.font = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
+			}
+			else
+			{
+				button.text.font = font;
+			}
 			if(width != null && height != null && position != null)
 			{
 				button.bounds = new Rectangle((int)position.Value.X, (int)position.Value.Y, width.Value, height.Value);
@@ -139,6 +146,7 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 			{
 				button.origin = Vector2.Zero;
 			}
+			Add(button);
 			return button;
 		}
 	}

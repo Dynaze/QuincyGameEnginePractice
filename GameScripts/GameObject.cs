@@ -69,7 +69,13 @@ namespace QuincyGameEnginePractice.GameScripts
 				IsVisible = true;
 				IsUiVisible = true;
 				IsStart = true;
+				Add(this);
 			}
+		}
+
+		public static void Add(IQomponent2D thing)
+		{
+			GetComponents.components.Add(thing);
 		}
 
 		public virtual void Start()

@@ -10,11 +10,6 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 
 		public Label() : base(true) { }
 
-		public override void Start()
-		{
-			text.font = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
-		}
-
 		public void SetText(string msg)
 		{
 			text.text = msg;
@@ -25,11 +20,12 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 			sb.DrawString(text.font, text.text, Position, text.color, text.rotation, text.origin, text.scale, SpriteEffects.None, DrawOrder);
 		}
 
-		public static Label CreateLabel(string message = null, Color? color = null,
+		public static Label CreateLabel(SpriteFont font, string message = null, Color? color = null,
 										Vector2? position = null, Vector2? scale = null, Vector2? origin = null,
 										float? rotation = null)
 		{
 			var label = new Label();
+			label.text.font = font;
 			if(rotation != null)
 			{
 				label.text.rotation = rotation.Value;
