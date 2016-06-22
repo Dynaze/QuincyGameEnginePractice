@@ -75,6 +75,5 @@ namespace QuincyGameEnginePractice.GameScripts
 		{
 			return AverageFramesPerSecond.ToString("0.00");
 		}
-
 	}
 }

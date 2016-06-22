@@ -6,7 +6,6 @@ namespace QuincyGameEnginePractice.EngineCode
 {
 	public class Program : Game
 	{
-		[STAThread]
 		static void Main(string[] args)
 		{
 			using(var quincy = new Program())
@@ -19,8 +18,10 @@ namespace QuincyGameEnginePractice.EngineCode
 		{
 			graphicsDeviceManager = new GraphicsDeviceManager(this)
 			{
-				PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
-				PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height,
+				//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
+				//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+				PreferredBackBufferWidth = 1920,
+				PreferredBackBufferHeight = 1080,
 				SynchronizeWithVerticalRetrace = false,
 				IsFullScreen = true,
 				PreferMultiSampling = true,

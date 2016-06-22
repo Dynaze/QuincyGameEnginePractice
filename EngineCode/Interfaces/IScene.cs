@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
 	public interface IScene
 	{
+		World world { get; set; }
 		ComponentManager componentManager { get; set; }
 		SpriteBatch spriteBatch { get; }
 		Color BackgroundColor { get; set; }

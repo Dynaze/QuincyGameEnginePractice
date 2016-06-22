@@ -7,7 +7,7 @@ namespace QuincyGameEnginePractice.GameScripts
 	/// <summary>
 	/// All components of the game have to inherit this class and the stuff will all be handled automatically
 	/// </summary>
-	public class GameObject : IQomponent2D
+	public abstract class GameObject : IQomponent2D
 	{
 		bool awake;
 		public bool IsStart

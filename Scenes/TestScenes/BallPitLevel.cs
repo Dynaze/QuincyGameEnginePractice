@@ -12,16 +12,11 @@ namespace QuincyGameEnginePractice.Scenes
 	{
 		InputHandler input;
 
-		/// <summary>
-		/// this shit doesnt work properly
-		/// </summary>
 		TileMap tileMap;
 
 		Wall[] walls;
 
 		Floor floor;
-
-		World world;
 
 		FPSCounter fps;
 
@@ -30,15 +25,6 @@ namespace QuincyGameEnginePractice.Scenes
 		SpriteFont PrimeCode;
 
 		Texture2D blockTexture;
-
-		/// <summary>
-		/// 0.033333 = 30 times per second
-		/// 0.016666 = 60 times per second
-		/// 0.008888 = 120 times per second
-		/// </summary>
-		float fixedUpdate = 0.016666f;
-
-		float toUpdate;
 
 		public override void LoadContent()
 		{
@@ -68,13 +54,6 @@ namespace QuincyGameEnginePractice.Scenes
 			if(Global.Ref.IsActive)
 			{
 				debugFps.text.text = ($"FPS: {fps.GetCurrentFPS()}\nGameObjects: {GetComponents.components.Count()}");
-				var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-				if(toUpdate > fixedUpdate)
-				{
-					world.Step(fixedUpdate);
-					toUpdate = 0;
-				}
-				toUpdate += delta;
 				if(InputHandler.KeyPressed(Keys.Escape))
 					SceneManager.ChangeScene("MainMenu");
 				if(InputHandler.KeyPressed(Keys.R))

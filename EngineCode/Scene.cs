@@ -1,10 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
 	public abstract class Scene : IScene
 	{
+		World _world;
+		public World world
+		{
+			get { return _world; }
+			set { _world = value; }
+		}
+
 		Color _BackgroundColor;
 		public Color BackgroundColor
 		{
@@ -26,19 +34,30 @@ namespace QuincyGameEnginePractice.EngineCode
 			set { _SceneName = value; }
 		}
 
-		Rectangle _ScreenArea;
+		Rectangle _screenArea;
 		public Rectangle ScreenArea
 		{
-			get { return _ScreenArea; }
-			set { _ScreenArea = value; }
+			get { return _screenArea; }
+			set { _screenArea = value; }
 		}
 
-		SpriteBatch _SpriteBatch;
+		SpriteBatch _spriteBatch;
 		public SpriteBatch spriteBatch
 		{
-			get { return _SpriteBatch; }
-			set { _SpriteBatch = value; }
+			get { return _spriteBatch; }
+			set { _spriteBatch = value; }
 		}
+
+		/// <summary>
+		/// 0.033333 = 30 times per second
+		/// 0.016666 = 60 times per second
+		/// 0.008888 = 120 times per second
+		/// </summary>
+		const float fixedUpdate = 0.016666f;
+
+		float accumlator;
+
+		float toUpdate;
 
 		public abstract void LoadContent();
 
@@ -75,6 +94,16 @@ namespace QuincyGameEnginePractice.EngineCode
 		{
 			Update(gameTime);
 			UpdateStuff(gameTime);
+			if(world != null)
+			{
+				if(toUpdate > fixedUpdate)
+				{
+					world.Step(fixedUpdate);
+					//accumlator -= fixedUpdate;
+					toUpdate = 0;
+				}
+			}
+			toUpdate += (float)gameTime.ElapsedGameTime.TotalSeconds;
 		}
 
 		protected void UpdateStuff(GameTime gameTime)
