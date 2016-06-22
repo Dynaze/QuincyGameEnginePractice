@@ -27,7 +27,7 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 
 		public override void Start()
 		{
-			text.color = Color.Black;
+
 		}
 
 		public override void Update(GameTime gameTime)
@@ -54,6 +54,11 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 										int? width = null, int? height = null, float? rotation = null)
 		{
 			var button = new Button();
+			button.text.color = Color.Black;
+			button.text.scale = Vector2.One;
+			button.text.rotation = 0f;
+			button.text.origin = Vector2.Zero;
+			button.text.text = string.Empty;
 			if(font == null)
 			{
 				button.text.font = Global.Ref.Content.Load<SpriteFont>(Global.pipeline + "Fonts/orangeKid");
@@ -131,8 +136,12 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 			}
 			else
 			{
-				if(width != null && height != null && color != null)
+				if(width != null && height != null)
 				{
+					if(color != null)
+						button.color = color.Value;
+					else
+						color = Color.White;
 					button.buttonTexture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, width.Value, height.Value, color.Value);
 				}
 				else

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using QuincyGameEnginePractice.EngineCode;
+using System;
 
 namespace QuincyGameEnginePractice.GameScripts
 {
@@ -11,11 +12,13 @@ namespace QuincyGameEnginePractice.GameScripts
 		static RenderTarget2D renderTarget;
 		Vector2 scale;
 		int gridx, gridy;
+		Rectangle ScreenArea;
 
-		public TileMap(int gridx, int gridy) : base(true)
+		public TileMap(Rectangle area) : base(true)
 		{
-			this.gridx = gridx;
-			this.gridy = gridy;
+			ScreenArea = area;
+			gridx = (int)Math.Ceiling((double)ScreenArea.Width / 16);
+			gridy = (int)Math.Ceiling((double)ScreenArea.Height / 16);
 		}
 
 		public override void Start()

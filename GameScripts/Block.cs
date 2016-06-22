@@ -5,13 +5,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuincyGameEnginePractice.EngineCode;
-using QuincyGameEnginePractice.Scenes;
 
 namespace QuincyGameEnginePractice.GameScripts
 {
 	class Block : GameObject
 	{
-		Texture2D texture;
+		public static Texture2D texture;
 		Body body;
 		World world;
 
@@ -26,7 +25,8 @@ namespace QuincyGameEnginePractice.GameScripts
 		{
 			ScreenArea = SceneManager.GetScene().ScreenArea;
 			DrawOrder = 1;
-			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
+			if(texture == null)
+				texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
 			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 10f);
 			body.BodyType = BodyType.Dynamic;
 			body.Restitution = 0.2f;
@@ -39,25 +39,26 @@ namespace QuincyGameEnginePractice.GameScripts
 		{
 			var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 			var toMove = Vector2.Zero;
-			float speed = 500;
+			float speed = texture.Width * texture.Height;
 			if(InputHandler.KeyDown(Keys.W))
 			{
-				toMove += Vector2.Zero.Up() * speed * delta;
+				toMove += Vector2.Zero.Up();
 			}
 			if(InputHandler.KeyDown(Keys.A))
 			{
-				toMove += Vector2.Zero.Left() * speed * delta;
+				toMove += Vector2.Zero.Left();
 			}
 			if(InputHandler.KeyDown(Keys.S))
 			{
-				toMove += Vector2.Zero.Down() * speed * delta;
+				toMove += Vector2.Zero.Down();
 			}
 			if(InputHandler.KeyDown(Keys.D))
 			{
-				toMove += Vector2.Zero.Right() * speed * delta;
+				toMove += Vector2.Zero.Right();
 			}
+			Vector2.Normalize(toMove);
 			if(toMove != Vector2.Zero)
-				body.ApplyForce(toMove);
+				body.ApplyForce(toMove * speed * delta);
 			if(!ScreenArea.Contains(body.Position.DisUnits()))
 			{
 				world.RemoveBody(body);
@@ -73,7 +74,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		public override void Dispose()
 		{
-			texture.Dispose();
+			//texture.Dispose();
 			body.Dispose();
 		}
 	}

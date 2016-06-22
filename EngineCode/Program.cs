@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice.EngineCode
 {
 	public class Program : Game
 	{
+		[STAThread]
 		static void Main(string[] args)
 		{
 			using(var quincy = new Program())
@@ -16,10 +19,10 @@ namespace QuincyGameEnginePractice.EngineCode
 		{
 			graphicsDeviceManager = new GraphicsDeviceManager(this)
 			{
-				PreferredBackBufferWidth = 1280,
-				PreferredBackBufferHeight = 720,
+				PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+				PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height,
 				SynchronizeWithVerticalRetrace = false,
-				IsFullScreen = false,
+				IsFullScreen = true,
 				PreferMultiSampling = true,
 			};
 		}

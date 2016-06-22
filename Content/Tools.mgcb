@@ -34,3 +34,12 @@
 /processorParam:TextureFormat=Compressed
 /build:Assets\Fonts\orangeKid.spritefont
 
+#begin Assets/Fonts/PrimeCode.ttf
+/copy:Assets/Fonts/PrimeCode.ttf
+
+#begin Assets/Fonts/PrimeCode.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Assets/Fonts/PrimeCode.spritefont
+

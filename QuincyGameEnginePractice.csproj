@@ -54,7 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="FarseerPhysics MonoGame">
-      <HintPath>Farseer Physics Engine 3.5\bin\WindowsGL\Release\FarseerPhysics MonoGame.dll</HintPath>
+      <HintPath>Farseer3.5\bin\WindowsGL\Release\FarseerPhysics MonoGame.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +86,6 @@
     <Compile Include="EngineCode\QDictionary.cs" />
     <Compile Include="Scenes\PhysicsGame\Options.cs" />
     <Compile Include="EngineCode\GetComponents.cs" />
-    <Compile Include="Scenes\TestScenes\blocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -100,6 +99,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Content\Output\Assets\Fonts\PrimeCode.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Output\Assets\Fonts\PrimeCode.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
