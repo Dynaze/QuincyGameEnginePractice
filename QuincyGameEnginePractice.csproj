@@ -58,34 +58,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EngineCode\Global.cs" />
-    <Compile Include="EngineCode\Interfaces\IQomponent2D.cs" />
-    <Compile Include="EngineCode\ComponentManager.cs" />
-    <Compile Include="EngineCode\Scene.cs" />
-    <Compile Include="EngineCode\Texture2DExtentions.cs" />
-    <Compile Include="EngineCode\Ui\Button.cs" />
-    <Compile Include="EngineCode\Ui\Label.cs" />
-    <Compile Include="EngineCode\Vec2Extensions.cs" />
-    <Compile Include="GameScripts\FPSCounter.cs" />
-    <Compile Include="GameScripts\GameObject.cs" />
-    <Compile Include="GameScripts\InputHandler.cs" />
-    <Compile Include="GameScripts\Block.cs" />
-    <Compile Include="GameScripts\Floor.cs" />
-    <Compile Include="GameScripts\Text.cs" />
-    <Compile Include="GameScripts\Tile.cs" />
-    <Compile Include="GameScripts\TileMap.cs" />
-    <Compile Include="GameScripts\Wall.cs" />
-    <Compile Include="Scenes\PhysicsGame\PhizzleLevelOne.cs" />
-    <Compile Include="Scenes\PhysicsGame\PhizzleLevelTwo.cs" />
-    <Compile Include="Scenes\TestScenes\BallPitLevel.cs" />
-    <Compile Include="EngineCode\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EngineCode\Interfaces\IScene.cs" />
-    <Compile Include="EngineCode\SceneManager.cs" />
-    <Compile Include="Scenes\TestScenes\LevelTwo.cs" />
-    <Compile Include="EngineCode\QDictionary.cs" />
-    <Compile Include="Scenes\PhysicsGame\Options.cs" />
-    <Compile Include="EngineCode\GetComponents.cs" />
+    <Compile Include="Code\EngineCode\ComponentManager.cs" />
+    <Compile Include="Code\EngineCode\GetComponents.cs" />
+    <Compile Include="Code\EngineCode\Global.cs" />
+    <Compile Include="Code\EngineCode\Interfaces\IQomponent2D.cs" />
+    <Compile Include="Code\EngineCode\Interfaces\IScene.cs" />
+    <Compile Include="Code\EngineCode\Program.cs" />
+    <Compile Include="Code\EngineCode\QDictionary.cs" />
+    <Compile Include="Code\EngineCode\Scene.cs" />
+    <Compile Include="Code\EngineCode\SceneManager.cs" />
+    <Compile Include="Code\EngineCode\Texture2DExtentions.cs" />
+    <Compile Include="Code\EngineCode\Ui\Button.cs" />
+    <Compile Include="Code\EngineCode\Ui\Label.cs" />
+    <Compile Include="Code\EngineCode\Vec2Extensions.cs" />
+    <Compile Include="Code\GameScripts\Animation.cs" />
+    <Compile Include="Code\GameScripts\AnimationFrame.cs" />
+    <Compile Include="Code\GameScripts\Block.cs" />
+    <Compile Include="Code\GameScripts\Floor.cs" />
+    <Compile Include="Code\GameScripts\FPSCounter.cs" />
+    <Compile Include="Code\GameScripts\GameObject.cs" />
+    <Compile Include="Code\GameScripts\InputHandler.cs" />
+    <Compile Include="Code\GameScripts\Slime.cs" />
+    <Compile Include="Code\GameScripts\Text.cs" />
+    <Compile Include="Code\GameScripts\Tile.cs" />
+    <Compile Include="Code\GameScripts\TileMap.cs" />
+    <Compile Include="Code\GameScripts\Wall.cs" />
+    <Compile Include="Code\Scenes\PhysicsGame\Options.cs" />
+    <Compile Include="Code\Scenes\PhysicsGame\PhizzleLevelOne.cs" />
+    <Compile Include="Code\Scenes\PhysicsGame\PhizzleLevelTwo.cs" />
+    <Compile Include="Code\Scenes\TestScenes\BallPitLevel.cs" />
+    <Compile Include="Code\Scenes\TestScenes\LevelTwo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -105,6 +108,15 @@
     <None Include="Content\Output\Assets\Fonts\PrimeCode.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Output\Assets\Sprites\slime.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\" />
+    <Folder Include="Code\EngineCode\" />
+    <Folder Include="Code\GameScripts\" />
+    <Folder Include="Code\Scenes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
