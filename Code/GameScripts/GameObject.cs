@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.EngineCode;
+using QEngine.EngineCode.Interfaces;
+using QEngine.EngineCode;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
 	/// <summary>
 	/// All components of the game have to inherit this class and the stuff will all be handled automatically
@@ -58,7 +59,7 @@ namespace QuincyGameEnginePractice.GameScripts
 			set { position = value; }
 		}
 
-		public GameObject(bool defaultStart)
+		protected GameObject(bool defaultStart)
 		{
 			if(defaultStart)
 			{
@@ -83,7 +84,7 @@ namespace QuincyGameEnginePractice.GameScripts
 
 		}
 
-		public virtual void FixedUpdate(GameTime gameTime)
+		public virtual void FixedUpdate(float fixedUpdate)
 		{
 			
 		}

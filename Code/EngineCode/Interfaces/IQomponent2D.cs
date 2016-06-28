@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QuincyGameEnginePractice.EngineCode
+namespace QEngine.EngineCode.Interfaces
 {
 	/// <summary>
 	/// This like like a gameobject in unity that you place in the scene that can be anything from like a player to like ui or something
@@ -43,6 +43,11 @@ namespace QuincyGameEnginePractice.EngineCode
 		/// so that you dont need to worry about textures not being there for variables needed before textures
 		/// </summary>
 		void Start();
+		/// <summary>
+		/// this is where you do animation and physics
+		/// </summary>
+		/// <returns>The update.</returns>
+		void FixedUpdate(float fixedDelta);
 		/// <summary>
 		/// THis is where you will do all the logic for the object on the scenes
 		/// </summary>

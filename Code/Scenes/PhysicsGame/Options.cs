@@ -1,53 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
-using QuincyGameEnginePractice.EngineCode;
-using QuincyGameEnginePractice.EngineCode.Ui;
+using QEngine.EngineCode;
+using QEngine.EngineCode.Ui;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.GameScripts;
+using QEngine.GameScripts;
+using Microsoft.Xna.Framework.Input;
 
-namespace QuincyGameEnginePractice
+namespace QEngine.Scenes.PhysicsGame
 {
 	public class Options : Scene
 	{
-		InputHandler input;
-
 		Button resUp;
 		Button resDown;
 		Button resolution;
 
 		Button toggleFullscreen;
 
-		SpriteFont orangeKid;
+		SpriteFont PrimeCode;
 
 		public override void LoadContent()
 		{
-			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
-			componentManager = new ComponentManager();
 			BackgroundColor = Color.Snow;
-			orangeKid = Global.Ref.Content.Load<SpriteFont>("Fonts/orangeKid");
-			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
+			PrimeCode = Global.Ref.Content.Load<SpriteFont>("Fonts/PrimeCode");
 		}
 
 		public override void Start()
 		{
-			input = new InputHandler();
 			resDown = Button.NewButton();
 			resUp = Button.NewButton();
 			resolution = Button.NewButton();
 			toggleFullscreen = Button.NewButton();
-			componentManager.Add(resDown);
-			componentManager.Add(resUp);
-			componentManager.Add(resolution);
-			componentManager.Add(toggleFullscreen);
-		}
-
-		public override void FixedUpdate(GameTime gameTime)
-		{
-			
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-
+			if(ControlHandle.KeyPressed(Keys.Escape))
+				SceneManager.ChangeScene("MainMenu");
 		}
 
 		public override void Draw()
@@ -64,11 +51,5 @@ namespace QuincyGameEnginePractice
 			DrawUiStuff();
 			spriteBatch.End();
 		}
-
-		public override void UnloadContent()
-		{
-			UnloadStuff();
-		}
 	}
 }
-

@@ -1,9 +1,7 @@
-﻿using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.EngineCode;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
     public struct Text
     {

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.EngineCode;
+using QEngine.EngineCode;
 using System;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
 	public class TileMap : GameObject
 	{
-		Texture2D tileSheet;
+		static Texture2D tileSheet;
 		static RenderTarget2D renderTarget;
 		Vector2 scale;
 		int gridx, gridy;
@@ -24,7 +24,7 @@ namespace QuincyGameEnginePractice.GameScripts
 		public override void Start()
 		{
 			scale = Vector2.One;
-			tileSheet = Global.Ref.Content.Load<Texture2D>("Sprites/TileSheet");
+			if(tileSheet == null)tileSheet = Global.Ref.Content.Load<Texture2D>("Sprites/TileSheet");
 			CreateGrid();
 		}
 
@@ -49,20 +49,19 @@ namespace QuincyGameEnginePractice.GameScripts
 					tileList.Add(tile);
 				}
 			}
-			if(renderTarget == null)
+			//if(renderTarget == null)
 				renderTarget = Texture2DExtentions.CreateOneTextureFromMany(Global.Ref.GraphicsDevice, tileSheet, SceneManager.GetScene(),
 					tileList, new Vector2(gridx * 16 * scale.X, gridy * 16 * scale.Y), scale);
 		}
 
 		public override void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture: renderTarget, position: Position, scale: scale, color: Color.White);
+			sb.Draw(renderTarget, Position, scale: scale, color: Color.White);
 		}
 
 		public override void Dispose()
 		{
-			tileSheet.Dispose();
-			//renderTarget.Dispose();
+			
 		}
 	}
 }

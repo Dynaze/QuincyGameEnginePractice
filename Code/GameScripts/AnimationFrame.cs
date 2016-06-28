@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
 	public class AnimationFrame
 	{

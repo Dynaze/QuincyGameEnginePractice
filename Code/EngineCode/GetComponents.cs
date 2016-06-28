@@ -1,6 +1,4 @@
-﻿using System;
-using QuincyGameEnginePractice.EngineCode;
-namespace QuincyGameEnginePractice
+﻿namespace QEngine.EngineCode
 {
 	public static class GetComponents
 	{

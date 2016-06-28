@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.GameScripts;
+using QEngine.GameScripts;
 
-namespace QuincyGameEnginePractice.EngineCode.Ui
+namespace QEngine.EngineCode.Ui
 {
 	class Label : GameObject
 	{

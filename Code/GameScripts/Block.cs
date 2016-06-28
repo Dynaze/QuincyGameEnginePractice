@@ -4,15 +4,17 @@ using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using QuincyGameEnginePractice.EngineCode;
+using QEngine.EngineCode;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
 	class Block : GameObject
 	{
-		public static Texture2D texture;
+		static Texture2D texture;
 		Body body;
 		World world;
+
+		const float speed = 1000;
 
 		Rectangle ScreenArea;
 
@@ -39,20 +41,19 @@ namespace QuincyGameEnginePractice.GameScripts
 		{
 			var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 			var toMove = Vector2.Zero;
-			float speed = 50000;
-			if(InputHandler.KeyDown(Keys.W))
+			if(ControlHandle.KeyDown(Keys.W))
 			{
 				toMove += Vector2.Zero.Up();
 			}
-			if(InputHandler.KeyDown(Keys.A))
+			if(ControlHandle.KeyDown(Keys.A))
 			{
 				toMove += Vector2.Zero.Left();
 			}
-			if(InputHandler.KeyDown(Keys.S))
+			if(ControlHandle.KeyDown(Keys.S))
 			{
 				toMove += Vector2.Zero.Down();
 			}
-			if(InputHandler.KeyDown(Keys.D))
+			if(ControlHandle.KeyDown(Keys.D))
 			{
 				toMove += Vector2.Zero.Right();
 			}
@@ -69,12 +70,11 @@ namespace QuincyGameEnginePractice.GameScripts
 		public override void Draw(SpriteBatch sb)
 		{
 			//have to use position of body and the origin needs to be half the texture width and height
-			sb.Draw(texture: texture, position: body.Position.DisUnits(), origin: new Vector2(texture.Width, texture.Height) / 2, color: Color.White, rotation: body.Rotation, layerDepth: DrawOrder);
+			sb.Draw(texture, body.Position.DisUnits(), origin: new Vector2(texture.Width, texture.Height) / 2, color: Color.White, rotation: body.Rotation, layerDepth: DrawOrder);
 		}
 
 		public override void Dispose()
 		{
-			//texture.Dispose();
 			body.Dispose();
 		}
 	}

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
+using QEngine.GameScripts;
+using QEngine.EngineCode.Interfaces;
 
-namespace QuincyGameEnginePractice.EngineCode
+namespace QEngine.EngineCode
 {
 	public abstract class Scene : IScene
 	{
@@ -48,29 +50,46 @@ namespace QuincyGameEnginePractice.EngineCode
 			set { _spriteBatch = value; }
 		}
 
+		ControlHandle _input;
+		public ControlHandle Input
+		{
+			get { return _input;}
+			set { _input = value;}
+		}
+
+		public Coroutines coroutine;
+
 		/// <summary>
 		/// 0.033333 = 30 times per second
 		/// 0.016666 = 60 times per second
 		/// *wrong* 0.008888 = 120 times per second *actualy* equals 112 :/
 		/// 0.00833333 = 120 times per second
 		/// </summary>
-		const float fixedUpdate = 0.008333333f;
+		const float fixedUpdate = 0.01666666f;
 
 		float accumlator;
 
-		public abstract void LoadContent();
+		public virtual void LoadContent()
+		{
+			
+		}
 
 		public void OnLoadContent()
 		{
+			coroutine = new Coroutines();
 			componentManager = new ComponentManager();
 			GetComponents.components = _componentManager;
 			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
 			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
 			BackgroundColor = Color.CornflowerBlue;
+			Input = new ControlHandle();
 			LoadContent();
 		}
 
-		public abstract void Start();
+		public virtual void Start()
+		{
+			
+		}
 
 		public void OnStart()
 		{
@@ -87,24 +106,39 @@ namespace QuincyGameEnginePractice.EngineCode
 			}
 		}
 
-		public abstract void FixedUpdate(GameTime gameTime);
+		public virtual void FixedUpdate(float fixedDelta)
+		{
+			
+		}
 
-		public abstract void Update(GameTime gameTime);
+		public virtual void Update(GameTime gameTime)
+		{
+			
+		}
 
 		public void OnUpdate(GameTime gameTime)
 		{
-			var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-			if(delta > 0.25)
-				delta = 0.25f;
+			var delta = MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);
 			accumlator += delta;
 			while(accumlator > fixedUpdate)
 			{
-				UpdateStuff(gameTime);
-				if(world != null)
-					world.Step(fixedUpdate);
+				FixedUpdate(fixedUpdate);
+				FixedUpdateStuff(fixedUpdate);
+				coroutine?.Update();
+				world?.Step(fixedUpdate);
 				accumlator -= fixedUpdate;
 			}
 			Update(gameTime);
+			UpdateStuff(gameTime);
+		}
+
+		protected void FixedUpdateStuff(float FixedDelta)
+		{
+			for(int i = 0; i < componentManager.Count(); i++)
+			{
+				if(componentManager.gameObjects[i].IsEnabled)
+					componentManager.gameObjects[i].FixedUpdate(FixedDelta);
+			}
 		}
 
 		protected void UpdateStuff(GameTime gameTime)
@@ -116,7 +150,13 @@ namespace QuincyGameEnginePractice.EngineCode
 			}
 		}
 
-		public abstract void Draw();
+		public virtual void Draw()
+		{
+			Clear();
+			spriteBatch.Begin();
+			DrawStuff();
+			spriteBatch.End();
+		}
 
 		public void OnDraw()
 		{
@@ -132,7 +172,12 @@ namespace QuincyGameEnginePractice.EngineCode
 			}
 		}
 
-		public abstract void DrawUi();
+		public virtual void DrawUi()
+		{
+			spriteBatch.Begin();
+			DrawUiStuff();
+			spriteBatch.End();
+		}
 
 		public void OnDrawUi()
 		{
@@ -148,7 +193,10 @@ namespace QuincyGameEnginePractice.EngineCode
 			}
 		}
 
-		public abstract void UnloadContent();
+		public virtual void UnloadContent()
+		{
+			
+		}
 
 		public void OnUnloadContent()
 		{

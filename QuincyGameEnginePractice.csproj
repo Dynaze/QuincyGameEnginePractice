@@ -78,17 +78,16 @@
     <Compile Include="Code\GameScripts\Floor.cs" />
     <Compile Include="Code\GameScripts\FPSCounter.cs" />
     <Compile Include="Code\GameScripts\GameObject.cs" />
-    <Compile Include="Code\GameScripts\InputHandler.cs" />
+    <Compile Include="Code\GameScripts\ControlHandle.cs" />
     <Compile Include="Code\GameScripts\Slime.cs" />
     <Compile Include="Code\GameScripts\Text.cs" />
     <Compile Include="Code\GameScripts\Tile.cs" />
     <Compile Include="Code\GameScripts\TileMap.cs" />
     <Compile Include="Code\GameScripts\Wall.cs" />
     <Compile Include="Code\Scenes\PhysicsGame\Options.cs" />
-    <Compile Include="Code\Scenes\PhysicsGame\PhizzleLevelOne.cs" />
-    <Compile Include="Code\Scenes\PhysicsGame\PhizzleLevelTwo.cs" />
+    <Compile Include="Code\Scenes\PhysicsGame\MainMenu.cs" />
     <Compile Include="Code\Scenes\TestScenes\BallPitLevel.cs" />
-    <Compile Include="Code\Scenes\TestScenes\LevelTwo.cs" />
+    <Compile Include="Code\EngineCode\Coroutine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

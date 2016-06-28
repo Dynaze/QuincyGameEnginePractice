@@ -1,19 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
-using QuincyGameEnginePractice.EngineCode;
-using QuincyGameEnginePractice.EngineCode.Ui;
-using QuincyGameEnginePractice.GameScripts;
+using QEngine.EngineCode;
+using QEngine.EngineCode.Ui;
+using QEngine.GameScripts;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace QuincyGameEnginePractice.Scenes.PhysicsGame
+namespace QEngine.Scenes.PhysicsGame
 {
 	/// <summary>
 	/// This is like going to be the main menu for the game, learn how to click on ui elements like buttons
 	/// </summary>
 	class PhizzleLevelOne : Scene
 	{
-		InputHandler input;
-
 		Button MAINMENU;
 		Button StartGame;
 		Button Options;
@@ -33,7 +31,6 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 
 		public override void Start()
 		{
-			input = new InputHandler();
 			MAINMENU = Button.NewButton(
 				font: orangeKid,
 				message: "WELCOME TO PHIZZLE",
@@ -75,36 +72,6 @@ namespace QuincyGameEnginePractice.Scenes.PhysicsGame
 				Global.Ref.Exit();
 			};
 			s = new Slime();
-		}
-
-		public override void FixedUpdate(GameTime gameTime)
-		{
-			
-		}
-
-		public override void Update(GameTime gameTime)
-		{
-
-		}
-
-		public override void Draw()
-		{
-			Clear();
-			spriteBatch.Begin();
-			DrawStuff();
-			spriteBatch.End();
-		}
-
-		public override void DrawUi()
-		{
-			spriteBatch.Begin();
-			DrawUiStuff();
-			spriteBatch.End();
-		}
-
-		public override void UnloadContent()
-		{
-			UnloadStuff();
 		}
 	}
 }

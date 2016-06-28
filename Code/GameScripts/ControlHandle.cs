@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
-	public class InputHandler : GameObject
+	public class ControlHandle : GameObject
 	{
 		static KeyboardState currentKeyboard;
 		static KeyboardState previousKeyboard;
@@ -45,13 +45,11 @@ namespace QuincyGameEnginePractice.GameScripts
 			get { return previousPadState; }
 		}
 
-		public InputHandler() : base(true)
+		public ControlHandle() : base(true)
 		{
-			IsEnabled = true;
 			currentKeyboard = Keyboard.GetState();
 			currentMouse = Mouse.GetState();
 			currentPadState = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
-
 			foreach(PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
 				currentPadState[(int)index] = GamePad.GetState(index);
 		}

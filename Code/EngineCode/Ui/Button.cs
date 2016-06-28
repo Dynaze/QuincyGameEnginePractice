@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.GameScripts;
+using QEngine.GameScripts;
 using System.Runtime.CompilerServices;
 
-namespace QuincyGameEnginePractice.EngineCode.Ui
+namespace QEngine.EngineCode.Ui
 {
 	class Button : GameObject
 	{
@@ -32,7 +32,7 @@ namespace QuincyGameEnginePractice.EngineCode.Ui
 
 		public override void Update(GameTime gameTime)
 		{
-			if(InputHandler.MouseLeftClicked() && bounds.Contains(InputHandler.CurrentMouse.Position))
+			if(ControlHandle.MouseLeftClicked() && bounds.Contains(ControlHandle.CurrentMouse.Position))
 			{
 				Clicked?.Invoke();
 			}

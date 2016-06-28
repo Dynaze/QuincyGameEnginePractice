@@ -2,16 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using QuincyGameEnginePractice.EngineCode;
-using QuincyGameEnginePractice.GameScripts;
-using QuincyGameEnginePractice.EngineCode.Ui;
+using QEngine.EngineCode;
+using QEngine.GameScripts;
+using QEngine.EngineCode.Ui;
+using System.Collections;
 
-namespace QuincyGameEnginePractice.Scenes
+namespace QEngine.Scenes.TestScenes
 {
 	public class BallPitLevel : Scene
 	{
-		InputHandler input;
-
 		TileMap tileMap;
 
 		Wall[] walls;
@@ -35,7 +34,6 @@ namespace QuincyGameEnginePractice.Scenes
 
 		public override void Start()
 		{
-			input = new InputHandler();
 			tileMap = new TileMap(ScreenArea);
 			world = new World(new Vector2(0f, 9.8f));
 			walls = new Wall[2];
@@ -44,14 +42,8 @@ namespace QuincyGameEnginePractice.Scenes
 			walls[1] = new Wall(world, ScreenArea, 2);
 			fps = new FPSCounter();
 			debugFps = Button.NewButton(font: PrimeCode, width: 200, height: 40, position: Vector2.Zero);
-			Block.texture = blockTexture;
 			for(int i = 0; i < 10; i++)
 				new Block(world);
-		}
-
-		public override void FixedUpdate(GameTime gameTime)
-		{
-			
 		}
 
 		public override void Update(GameTime gameTime)
@@ -59,36 +51,30 @@ namespace QuincyGameEnginePractice.Scenes
 			if(Global.Ref.IsActive)
 			{
 				debugFps.text.text = ($"FPS: {fps.GetCurrentFPS()}\nGameObjects: {GetComponents.components.Count()}");
-				if(InputHandler.KeyPressed(Keys.Escape))
+				if(ControlHandle.KeyPressed(Keys.Escape))
 					SceneManager.ChangeScene("MainMenu");
-				if(InputHandler.KeyPressed(Keys.R))
+				if(ControlHandle.KeyPressed(Keys.R))
 					SceneManager.ResetScene();
-				if(InputHandler.KeyDown(Keys.Space))
-					new Block(world).Start();
-				if(InputHandler.MouseLeftClicked())
+				if(ControlHandle.KeyDown(Keys.Space))
+				{
+					if(!coroutine.Running)
+						coroutine.Start(SpawnBlock(gameTime));
+				}
+				if(ControlHandle.MouseLeftClicked())
 					new Block(world).Start();
 			}
 		}
 
-		public override void Draw()
+		IEnumerator SpawnBlock(GameTime gameTime)
 		{
-			Clear();
-			spriteBatch.Begin(samplerState: SamplerState.PointWrap);
-			DrawStuff();
-			spriteBatch.End();
-		}
-
-		public override void DrawUi()
-		{
-			spriteBatch.Begin();
-			DrawUiStuff();
-			spriteBatch.End();
+			new Block(world).Start();
+			yield return Coroutines.Pause(0.0005f);
 		}
 
 		public override void UnloadContent()
 		{
+			coroutine.StopAll();
 			blockTexture.Dispose();
-			UnloadStuff();
 		}
 	}
 }

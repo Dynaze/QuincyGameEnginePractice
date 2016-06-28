@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-
-namespace QuincyGameEnginePractice.EngineCode
+using QEngine.EngineCode.Interfaces;
+namespace QEngine.EngineCode
 {
 	public class ComponentManager
 	{

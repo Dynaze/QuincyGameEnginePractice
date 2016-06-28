@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QuincyGameEnginePractice.GameScripts;
+using QEngine.GameScripts;
+using QEngine.EngineCode.Interfaces;
 
-namespace QuincyGameEnginePractice.EngineCode
+namespace QEngine.EngineCode
 {
 	public static class Texture2DExtentions
 	{

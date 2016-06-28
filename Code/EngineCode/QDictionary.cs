@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using QuincyGameEnginePractice.EngineCode;
+using QEngine.EngineCode.Interfaces;
 
-namespace QuincyGameEnginePractice
+namespace QEngine.EngineCode
 {
 	public class QDictionary
 	{

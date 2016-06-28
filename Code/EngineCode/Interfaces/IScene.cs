@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 
-namespace QuincyGameEnginePractice.EngineCode
+namespace QEngine.EngineCode.Interfaces
 {
 	public interface IScene
 	{
@@ -20,7 +20,7 @@ namespace QuincyGameEnginePractice.EngineCode
 		void OnDraw();
 		void DrawUi();
 		void OnDrawUi();
-		void FixedUpdate(GameTime gameTime);
+		void FixedUpdate(float fixedDelta);
 		void Update(GameTime gameTime);
 		void OnUpdate(GameTime gameTime);
 		void UnloadContent();

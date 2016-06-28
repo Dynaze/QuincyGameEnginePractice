@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using QuincyGameEnginePractice.Scenes;
-using QuincyGameEnginePractice.Scenes.PhysicsGame;
+using QEngine.EngineCode.Interfaces;
+using QEngine.Scenes.PhysicsGame;
+using QEngine.Scenes.TestScenes;
 
-namespace QuincyGameEnginePractice.EngineCode
+namespace QEngine.EngineCode
 {
 	/// <summary>
 	/// static class that handles all the scenes in the game, right now you have to statically add everything in here for it to be seen as a gamescreen outside of here,
@@ -62,6 +63,8 @@ namespace QuincyGameEnginePractice.EngineCode
 					LoadContent();
 					Start();
 				}
+				else
+					ResetScene();
 			}
 		}
 
@@ -86,20 +89,20 @@ namespace QuincyGameEnginePractice.EngineCode
 		}
 
 		/// <summary>
+		/// calls the start function in the scene that starts all the objects in the scene
+		/// </summary>
+		static void Start()
+		{
+			CurrentScene.OnStart();
+		}
+
+		/// <summary>
 		/// gets called by xna so you dont need to call this
 		/// </summary>
 		/// <param name="gameTime">Game time.</param>
 		public static void Update(GameTime gameTime)
 		{
 			CurrentScene.OnUpdate(gameTime);
-		}
-
-		/// <summary>
-		/// calls the start function in the scene that starts all the objects in the scene
-		/// </summary>
-		static void Start()
-		{
-			CurrentScene.OnStart();
 		}
 
 		/// <summary>

@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace QuincyGameEnginePractice.GameScripts
+namespace QEngine.GameScripts
 {
 	public class Animation
 	{
@@ -40,10 +40,10 @@ namespace QuincyGameEnginePractice.GameScripts
 			frames.Add(newFrame);
 		}
 
-		public void Update(GameTime gameTime)
+		public void Update(float fixedUpdate)
 		{
 			double secondsIntoAnimation =
-				timeIntoAnimation.TotalSeconds + (float)gameTime.ElapsedGameTime.TotalSeconds;
+				timeIntoAnimation.TotalSeconds + fixedUpdate;
 
 			double remainder = secondsIntoAnimation % Duration.TotalSeconds;
 
