@@ -8,6 +8,8 @@ namespace QEngine.EngineCode
 	{
 		List<IEnumerator> routines;
 
+		int lastIndex;
+
 		public Coroutines()
 		{
 			routines = new List<IEnumerator>();

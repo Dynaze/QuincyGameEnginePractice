@@ -28,13 +28,15 @@ namespace QEngine.GameScripts
 			ScreenArea = SceneManager.GetScene().ScreenArea;
 			DrawOrder = 1;
 			if(texture == null)
-				texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
-			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 10f);
+				texture = Texture2DExtentions.ColorTexture2D(15, 15, Color.GreenYellow);
+			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 150f);
+			//body = BodyFactory.CreateCircle(world, ConvertUnits.ToSimUnits(1000), 150f);
+			body.IgnoreCCD = true;			
 			body.BodyType = BodyType.Dynamic;
-			body.Restitution = 0.2f;
-			body.SetTransform(new Vector2(ScreenArea.Width / 2, 50).SimUnits(), 0.9f);
+			body.Restitution = 0.1f;
+			body.SetTransform(new Vector2(ScreenArea.Width / 2, 50).SimUnits(), 0f);
 			body.SleepingAllowed = true;
-			body.Friction = 1.0f;
+			body.Friction = 2.0f;
 		}
 
 		public override void FixedUpdate(float fixedUpdate)

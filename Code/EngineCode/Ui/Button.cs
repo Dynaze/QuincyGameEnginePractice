@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using QEngine.GameScripts;
-using System.Runtime.CompilerServices;
 
 namespace QEngine.EngineCode.Ui
 {
@@ -142,10 +141,10 @@ namespace QEngine.EngineCode.Ui
 						button.color = color.Value;
 					else
 						color = Color.White;
-					button.buttonTexture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, width.Value, height.Value, color.Value);
+					button.buttonTexture = Texture2DExtentions.ColorTexture2D(width.Value, height.Value, color.Value);
 				}
 				else
-					button.buttonTexture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 100, 100, Color.White);
+					button.buttonTexture = Texture2DExtentions.ColorTexture2D(100, 100, Color.White);
 			}
 			if(origin != null)
 			{

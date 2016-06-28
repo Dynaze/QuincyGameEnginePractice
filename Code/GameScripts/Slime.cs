@@ -9,7 +9,7 @@ namespace QEngine.GameScripts
 	{
 		public Slime() : base(true) { }
 
-		static Texture2D slime;
+		Texture2D slime;
 
 		Animation slimeIdle;
 
@@ -35,7 +35,7 @@ namespace QEngine.GameScripts
 
 		public override void Dispose()
 		{
-
+			slime.Dispose();
 		}
 	}
 }

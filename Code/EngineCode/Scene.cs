@@ -65,7 +65,7 @@ namespace QEngine.EngineCode
 		/// *wrong* 0.008888 = 120 times per second *actualy* equals 112 :/
 		/// 0.00833333 = 120 times per second
 		/// </summary>
-		const float fixedUpdate = 0.01666666f;
+		const float fixedUpdate = 1/60f;
 
 		float accumlator;
 
@@ -202,6 +202,8 @@ namespace QEngine.EngineCode
 		{
 			UnloadContent();
 			UnloadStuff();
+			Global.Ref.Content.Dispose();
+			Global.Ref.Content = new Microsoft.Xna.Framework.Content.ContentManager(Global.Ref.Services, Global.pipeline);
 		}
 
 		protected void UnloadStuff()

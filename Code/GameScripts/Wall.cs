@@ -15,16 +15,16 @@ namespace QEngine.GameScripts
 		Rectangle ScreenArea;
 		int side;
 
-		public Wall(World world, Rectangle screen, int side) : base(true)
+		public Wall(World world, int side) : base(true)
 		{
-			ScreenArea = screen;
+			ScreenArea = SceneManager.GetScene().ScreenArea;
 			this.world = world;
 			this.side = side;
 		}
 
 		public override void Start()
 		{
-			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 100, ScreenArea.Height, Color.Red);
+			texture = Texture2DExtentions.ColorTexture2D(100, ScreenArea.Height, Color.Red);
 			floor = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Bounds.Width), ConvertUnits.ToSimUnits(texture.Bounds.Height), 1f);
 			floor.BodyType = BodyType.Static;
 			if(side < 1)

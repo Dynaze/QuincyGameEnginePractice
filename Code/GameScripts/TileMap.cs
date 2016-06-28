@@ -8,8 +8,8 @@ namespace QEngine.GameScripts
 {
 	public class TileMap : GameObject
 	{
-		static Texture2D tileSheet;
-		static RenderTarget2D renderTarget;
+		Texture2D tileSheet;
+		RenderTarget2D renderTarget;
 		Vector2 scale;
 		int gridx, gridy;
 		Rectangle ScreenArea;
@@ -61,7 +61,8 @@ namespace QEngine.GameScripts
 
 		public override void Dispose()
 		{
-			
+			tileSheet.Dispose();
+			renderTarget.Dispose();
 		}
 	}
 }

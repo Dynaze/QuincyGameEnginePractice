@@ -12,7 +12,7 @@ namespace QEngine.EngineCode
 				quincy.Run();
 		}
 
-		GraphicsDeviceManager graphicsDeviceManager;
+		public GraphicsDeviceManager graphicsDeviceManager;
 
 		public Program()
 		{
@@ -22,10 +22,12 @@ namespace QEngine.EngineCode
 				//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
 				PreferredBackBufferWidth = 1280,
 				PreferredBackBufferHeight = 720,
+				HardwareModeSwitch = true,
 				SynchronizeWithVerticalRetrace = false,
 				IsFullScreen = false,
 				PreferMultiSampling = true,
 			};
+			graphicsDeviceManager.ApplyChanges();
 		}
 
 		protected override void LoadContent()

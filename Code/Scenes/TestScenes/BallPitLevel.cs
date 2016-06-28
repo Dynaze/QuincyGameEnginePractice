@@ -27,7 +27,7 @@ namespace QEngine.Scenes.TestScenes
 
 		public override void LoadContent()
 		{
-			blockTexture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, 25, 25, Color.GreenYellow);
+			blockTexture = Texture2DExtentions.ColorTexture2D(10, 10, Color.GreenYellow);
 			BackgroundColor = Color.CornflowerBlue;
 			PrimeCode = Global.Ref.Content.Load<SpriteFont>("Fonts/PrimeCode");
 		}
@@ -37,12 +37,12 @@ namespace QEngine.Scenes.TestScenes
 			tileMap = new TileMap(ScreenArea);
 			world = new World(new Vector2(0f, 9.8f));
 			walls = new Wall[2];
-			floor = new Floor(world, ScreenArea);
-			walls[0] = new Wall(world, ScreenArea, 0);
-			walls[1] = new Wall(world, ScreenArea, 2);
+			floor = new Floor(world);
+			walls[0] = new Wall(world, 0);
+			walls[1] = new Wall(world, 2);
 			fps = new FPSCounter();
 			debugFps = Button.NewButton(font: PrimeCode, width: 200, height: 40, position: Vector2.Zero);
-			for(int i = 0; i < 10; i++) 
+			for(int i = 0; i < 10; i++)
 			{ var b = new Block(world); }
 		}
 
@@ -65,10 +65,16 @@ namespace QEngine.Scenes.TestScenes
 			}
 		}
 
+		public override void Draw()
+		{
+			Global.Ref.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+			base.Draw();
+		}
+
 		IEnumerator SpawnBlock(GameTime gameTime)
 		{
 			new Block(world).Start();
-			yield return Coroutines.Pause(0.0005f);
+			yield return Coroutines.Pause(0.0002f);
 		}
 
 		public override void UnloadContent()

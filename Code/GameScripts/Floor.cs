@@ -15,20 +15,20 @@ namespace QEngine.GameScripts
 		Rectangle ScreenArea;
 		public int? width, height;
 
-		public Floor(World world, Rectangle screen) : base(true)
+		public Floor(World world) : base(true)
 		{
 			this.world = world;
-			ScreenArea = screen;
+			ScreenArea = SceneManager.GetScene().ScreenArea;
 		}
 
 		public override void Start()
 		{
 			if(width == null && height == null)
 			{
-				width = 100;
+				width = 2000;
 				height = 100;
 			}
-			texture = Texture2DExtentions.ColorTexture2D(Global.Ref.GraphicsDevice, width.Value, height.Value, Color.Red);
+			texture = Texture2DExtentions.ColorTexture2D(width.Value, height.Value, Color.Red);
 			floor = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Bounds.Width), ConvertUnits.ToSimUnits(texture.Bounds.Height), 1f);
 			floor.BodyType = BodyType.Static;
 			floor.SetTransform(new Vector2(ScreenArea.Width / 2, ScreenArea.Height - texture.Height / 2).SimUnits(), 0f);
@@ -43,8 +43,8 @@ namespace QEngine.GameScripts
 
 		public override void Dispose()
 		{
-			texture.Dispose();
 			floor.Dispose();
+			texture.Dispose();
 		}
 	}
 }
