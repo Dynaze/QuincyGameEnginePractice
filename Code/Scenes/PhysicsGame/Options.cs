@@ -19,7 +19,6 @@ namespace QEngine.Scenes.PhysicsGame
 
 		public override void LoadContent()
 		{
-			BackgroundColor = Color.Snow;
 			PrimeCode = Global.Ref.Content.Load<SpriteFont>("Fonts/PrimeCode");
 		}
 
@@ -35,21 +34,6 @@ namespace QEngine.Scenes.PhysicsGame
 		{
 			if(ControlHandle.KeyPressed(Keys.Escape))
 				SceneManager.ChangeScene("MainMenu");
-		}
-
-		public override void Draw()
-		{
-			Clear();
-			spriteBatch.Begin();
-			DrawStuff();
-			spriteBatch.End();
-		}
-
-		public override void DrawUi()
-		{
-			spriteBatch.Begin();
-			DrawUiStuff();
-			spriteBatch.End();
 		}
 	}
 }

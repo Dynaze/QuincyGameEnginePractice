@@ -7,8 +7,13 @@ namespace QEngine.GameScripts
 {
 	public class Animation
 	{
-		List<AnimationFrame> frames = new List<AnimationFrame>();
+		List<AnimationFrame> frames;
 		TimeSpan timeIntoAnimation;
+
+		public Animation()
+		{
+			frames = new List<AnimationFrame>();
+		}
 
 		TimeSpan Duration
 		{

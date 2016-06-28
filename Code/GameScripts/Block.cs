@@ -37,9 +37,9 @@ namespace QEngine.GameScripts
 			body.Friction = 1.0f;
 		}
 
-		public override void Update(GameTime gameTime)
+		public override void FixedUpdate(float fixedUpdate)
 		{
-			var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+			var delta = fixedUpdate;
 			var toMove = Vector2.Zero;
 			if(ControlHandle.KeyDown(Keys.W))
 			{

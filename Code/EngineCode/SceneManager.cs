@@ -11,18 +11,14 @@ namespace QEngine.EngineCode
 	/// </summary>
 	static class SceneManager
 	{
-		static QDictionary Scenes;
-
 		static IScene CurrentScene;
 
 		/// <summary>
 		/// call this once to setup a new scenemanager for your instance of the game
-		/// call again to remove all the scenes and restart all of them
 		/// </summary>
 		/// <returns>The scene manager.</returns>
 		public static void NewSceneManager()
 		{
-			Scenes = new QDictionary();
 			QDictionary.Add("MainMenu", new PhizzleLevelOne());
 			QDictionary.Add("Options", new Options());
 			QDictionary.Add("Test", new BallPitLevel());
@@ -47,6 +43,7 @@ namespace QEngine.EngineCode
 		{
 			if(CurrentScene == null)
 			{
+				//dont call unload content because there is nothing to unload
 				CurrentScene = QDictionary.ChangeScene(scene);
 				LoadContent();
 				Start();

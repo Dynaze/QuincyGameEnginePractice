@@ -61,7 +61,7 @@ namespace QEngine.EngineCode.Ui
 			button.text.text = string.Empty;
 			if(font == null)
 			{
-				button.text.font = Global.Ref.Content.Load<SpriteFont>("Fonts/orangeKid");
+				button.text.font = Global.Ref.Content.Load<SpriteFont>("Fonts/PrimeCode");
 			}
 			else
 			{
