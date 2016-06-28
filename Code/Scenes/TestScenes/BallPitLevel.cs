@@ -42,8 +42,8 @@ namespace QEngine.Scenes.TestScenes
 			walls[1] = new Wall(world, ScreenArea, 2);
 			fps = new FPSCounter();
 			debugFps = Button.NewButton(font: PrimeCode, width: 200, height: 40, position: Vector2.Zero);
-			for(int i = 0; i < 10; i++)
-				new Block(world);
+			for(int i = 0; i < 10; i++) 
+			{ var b = new Block(world); }
 		}
 
 		public override void Update(GameTime gameTime)
