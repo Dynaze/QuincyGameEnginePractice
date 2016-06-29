@@ -74,9 +74,9 @@ namespace QEngine
 
 		public void OnLoadContent()
 		{
-			coroutine = new Coroutines();
 			componentManager = new ComponentManager();
 			GetComponents.components = _componentManager;
+			coroutine = new Coroutines();
 			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
 			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
 			BackgroundColor = Color.CornflowerBlue;

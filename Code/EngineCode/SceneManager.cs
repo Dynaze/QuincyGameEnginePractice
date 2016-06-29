@@ -1,10 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace QEngine
 {
 	/// <summary>
 	/// static class that handles all the scenes in the game, right now you have to statically add everything in here for it to be seen as a gamescreen outside of here,
 	///  but I want to make this a lot better in the future
+	///  FIXED: kinda basically all you need to do is add a new ISCENE to the dictionary like in NewSceneManager
+	///  and then you can easily swap between scenes
+	///  BUG: if you swap really fucking fast between scenes it like crashes sometimes ;w;
 	/// </summary>
 	static class SceneManager
 	{
@@ -33,32 +37,41 @@ namespace QEngine
 
 		/// <summary>
 		/// change the current scene to another scene that you have for you levels
+		/// resets scene if changing scene to same scene
 		/// </summary>
 		/// <returns>The scene.</returns>
 		/// <param name="scene">Scene.</param>
 		public static void ChangeScene(string scene)
 		{
-			if(CurrentScene == null)
+			try
 			{
-				//dont call unload content because there is nothing to unload
-				CurrentScene = QDictionary.ChangeScene(scene);
-				LoadContent();
-				Start();
-			}
-			else
-			{
-				if(GetScene().SceneName != scene)
+				if(CurrentScene == null)
 				{
-					CurrentScene.UnloadContent();
-					//Reload the scene
-					//http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
-					//REEEEEFLECTION
-					CurrentScene = QDictionary.ChangeScene(scene);// = (T)Activator.CreateInstance(typeof(T));
+					//dont call unload content because there is nothing to unload
+					CurrentScene = QDictionary.ChangeScene(scene);
 					LoadContent();
 					Start();
 				}
 				else
-					ResetScene();
+				{
+					if(GetScene().SceneName != scene)
+					{
+						CurrentScene.UnloadContent();
+						CurrentScene = null;
+						//Reload the scene
+						//http://stackoverflow.com/questions/840261/passing-arguments-to-c-sharp-generic-new-of-templated-type
+						//REEEEEFLECTION
+						CurrentScene = QDictionary.ChangeScene(scene);// = (T)Activator.CreateInstance(typeof(T));
+						LoadContent();
+						Start();
+					}
+					else
+						ResetScene();
+				}
+			}
+			catch(Exception e)
+			{
+				Console.WriteLine($"Crash here? {e}");
 			}
 		}
 
@@ -75,6 +88,7 @@ namespace QEngine
 
 		/// <summary>
 		/// calls the scenes loadcontent method that inits componentManager and a spriteBatch
+		/// calls the scenes loadcontent class in the base scene Scene.cs
 		/// </summary>
 		/// <returns>The content.</returns>
 		static void LoadContent()
@@ -84,6 +98,7 @@ namespace QEngine
 
 		/// <summary>
 		/// calls the start function in the scene that starts all the objects in the scene
+		/// calls scene start method then calls all the objects Start()
 		/// </summary>
 		static void Start()
 		{
