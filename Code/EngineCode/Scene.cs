@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
-using QEngine.GameScripts;
-using QEngine.EngineCode.Interfaces;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public abstract class Scene : IScene
 	{
@@ -111,6 +109,15 @@ namespace QEngine.EngineCode
 			
 		}
 
+		protected void FixedUpdateStuff(float FixedDelta)
+		{
+			for(int i = 0; i < componentManager.Count(); i++)
+			{
+				if(componentManager.gameObjects[i].IsEnabled)
+					componentManager.gameObjects[i].FixedUpdate(FixedDelta);
+			}
+		}
+
 		public virtual void Update(GameTime gameTime)
 		{
 			
@@ -120,6 +127,8 @@ namespace QEngine.EngineCode
 		{
 			var delta = MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);
 			accumlator += delta;
+			Update(gameTime);
+			UpdateStuff(gameTime);
 			while(accumlator > fixedUpdate)
 			{
 				FixedUpdate(fixedUpdate);
@@ -127,17 +136,6 @@ namespace QEngine.EngineCode
 				coroutine?.Update();
 				world?.Step(fixedUpdate);
 				accumlator -= fixedUpdate;
-			}
-			Update(gameTime);
-			UpdateStuff(gameTime);
-		}
-
-		protected void FixedUpdateStuff(float FixedDelta)
-		{
-			for(int i = 0; i < componentManager.Count(); i++)
-			{
-				if(componentManager.gameObjects[i].IsEnabled)
-					componentManager.gameObjects[i].FixedUpdate(FixedDelta);
 			}
 		}
 

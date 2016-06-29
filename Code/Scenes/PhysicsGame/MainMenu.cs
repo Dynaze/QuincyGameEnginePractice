@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using QEngine.EngineCode;
-using QEngine.EngineCode.Ui;
-using QEngine.GameScripts;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace QEngine.Scenes.PhysicsGame
+namespace QEngine
 {
 	/// <summary>
 	/// This is like going to be the main menu for the game, learn how to click on ui elements like buttons
@@ -59,13 +55,13 @@ namespace QEngine.Scenes.PhysicsGame
 				height: 50,
 				color: Color.White,
 				position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 200));
-			Options.Clicked += () =>
-			{
-				SceneManager.ChangeScene("Options");
-			};
 			StartGame.Clicked += () =>
 			{
 				SceneManager.ChangeScene("Test");
+			};
+			Options.Clicked += () =>
+			{
+				SceneManager.ChangeScene("Options");
 			};
 			Quit.Clicked += () =>
 			{

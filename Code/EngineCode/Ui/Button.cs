@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QEngine.GameScripts;
 
-namespace QEngine.EngineCode.Ui
+namespace QEngine
 {
 	class Button : GameObject
 	{
@@ -24,15 +22,11 @@ namespace QEngine.EngineCode.Ui
 
 		Button() : base(true) { }
 
-		public override void Start()
-		{
-
-		}
-
 		public override void Update(GameTime gameTime)
 		{
 			if(ControlHandle.MouseLeftClicked() && bounds.Contains(ControlHandle.CurrentMouse.Position))
 			{
+				Console.WriteLine("Hello");
 				Clicked?.Invoke();
 			}
 		}
@@ -154,7 +148,6 @@ namespace QEngine.EngineCode.Ui
 			{
 				button.origin = Vector2.Zero;
 			}
-			Add(button);
 			return button;
 		}
 	}
