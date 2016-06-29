@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Microsoft.Xna.Framework;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 
 	public static class RectangleExtensions

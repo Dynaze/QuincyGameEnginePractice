@@ -4,9 +4,8 @@ using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using QEngine.EngineCode;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
 	class Block : GameObject
 	{

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using QEngine.EngineCode.Interfaces;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public static class QDictionary
 	{

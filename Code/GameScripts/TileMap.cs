@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QEngine.EngineCode;
 using System;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
 	public class TileMap : GameObject
 	{

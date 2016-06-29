@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine.EngineCode.Interfaces
+namespace QEngine
 {
 	/// <summary>
 	/// This like like a gameobject in unity that you place in the scene that can be anything from like a player to like ui or something

@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QEngine.EngineCode.Interfaces;
-using QEngine.EngineCode;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
 	/// <summary>
 	/// All components of the game have to inherit this class and the stuff will all be handled automatically

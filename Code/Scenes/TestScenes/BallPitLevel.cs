@@ -2,12 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using QEngine.EngineCode;
-using QEngine.GameScripts;
-using QEngine.EngineCode.Ui;
 using System.Collections;
 
-namespace QEngine.Scenes.TestScenes
+namespace QEngine
 {
 	public class BallPitLevel : Scene
 	{

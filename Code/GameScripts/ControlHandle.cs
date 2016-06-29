@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
 	public class ControlHandle : GameObject
 	{

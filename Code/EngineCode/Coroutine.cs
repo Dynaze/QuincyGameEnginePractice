@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Diagnostics;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public class Coroutines
 	{
 		List<IEnumerator> routines;
-
-		int lastIndex;
 
 		public Coroutines()
 		{

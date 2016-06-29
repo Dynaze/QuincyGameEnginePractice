@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using QEngine.EngineCode;
-using QEngine.EngineCode.Ui;
 using Microsoft.Xna.Framework.Graphics;
-using QEngine.GameScripts;
 using Microsoft.Xna.Framework.Input;
 
-namespace QEngine.Scenes.PhysicsGame
+namespace QEngine
 {
 	public class Options : Scene
 	{

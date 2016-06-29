@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
 	public class Animation
 	{

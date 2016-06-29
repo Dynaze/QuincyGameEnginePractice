@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
     public struct Text
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace QEngine.GameScripts
+namespace QEngine
 {
     public struct Tile
     {

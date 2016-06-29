@@ -1,7 +1,7 @@
 ﻿using FarseerPhysics;
 using Microsoft.Xna.Framework;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public static class Vector2Extensions
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public static class Global
 	{

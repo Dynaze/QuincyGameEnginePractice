@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	public class Program : Game
 	{

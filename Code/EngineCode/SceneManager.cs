@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using QEngine.EngineCode.Interfaces;
-using QEngine.Scenes.PhysicsGame;
-using QEngine.Scenes.TestScenes;
 
-namespace QEngine.EngineCode
+namespace QEngine
 {
 	/// <summary>
 	/// static class that handles all the scenes in the game, right now you have to statically add everything in here for it to be seen as a gamescreen outside of here,

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using QEngine.GameScripts;
 
-namespace QEngine.EngineCode.Ui
+namespace QEngine
 {
 	class Label : GameObject
 	{
