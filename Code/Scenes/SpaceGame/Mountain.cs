@@ -26,7 +26,7 @@ namespace QuincyGameEnginePractice
 
 		public Mountain(World world, ref int pixelsLeft) : base(true)
 		{
-			if(isFinishSpot==false)
+			if(isFinishSpot == false)
 			{
 				int i = Global.random.Next(100);
 				if(i > 90)
@@ -80,6 +80,8 @@ namespace QuincyGameEnginePractice
 		public override void Dispose()
 		{
 			body.Dispose();
+			isFinishSpotThere = false;
+			isFinishSpot = false;
 		}
 	}
 }

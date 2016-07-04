@@ -73,7 +73,7 @@ namespace QuincyGameEnginePractice
 			}
 			catch(Exception e)
 			{
-				Console.WriteLine($"Crash here? {e}");
+				Console.WriteLine($"Crash at ChangeScene? {e}");
 			}
 		}
 
@@ -83,9 +83,16 @@ namespace QuincyGameEnginePractice
 		/// <returns>The scene.</returns>
 		public static void ResetScene()
 		{
-			UnloadContent();
-			LoadContent();
-			Start();
+			try
+			{
+				UnloadContent();
+				LoadContent();
+				Start();
+			}
+			catch(Exception e)
+			{
+				Console.WriteLine($"Crash at ResetScene? {e}");
+			}
 		}
 
 		/// <summary>

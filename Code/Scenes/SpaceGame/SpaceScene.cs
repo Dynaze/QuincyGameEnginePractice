@@ -16,26 +16,26 @@ namespace QuincyGameEnginePractice
 
 		public override void Start()
 		{
-			do
+			while(remainingPixels > 0)
 			{
 				new Mountain(world, ref remainingPixels);
 			}
-			while(remainingPixels > 0);
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			
+			if(ControlHandle.KeyPressed(Keys.R))
+				SceneManager.ResetScene();
 		}
 
 		public override void FixedUpdate(float fixedDelta)
 		{
-			
+
 		}
 
 		public override void UnloadContent()
 		{
-			
+
 		}
 	}
 }
