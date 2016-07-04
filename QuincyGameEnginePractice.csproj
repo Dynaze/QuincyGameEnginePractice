@@ -70,6 +70,8 @@
     <Compile Include="Code\Scenes\SnakeGame\SnakeScene.cs" />
     <Compile Include="Code\Scenes\SnakeGame\SnakeBody.cs" />
     <Compile Include="Code\Scenes\SnakeGame\SnakeHead.cs" />
+    <Compile Include="Code\Scenes\SpaceGame\Mountain.cs" />
+    <Compile Include="Code\Scenes\SpaceGame\SpaceScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\EngineCode\ComponentManager.cs" />
     <Compile Include="Code\EngineCode\GetComponents.cs" />
