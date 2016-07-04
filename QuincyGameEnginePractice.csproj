@@ -70,6 +70,8 @@
     <Compile Include="Code\Scenes\SnakeGame\SnakeScene.cs" />
     <Compile Include="Code\Scenes\SnakeGame\SnakeBody.cs" />
     <Compile Include="Code\Scenes\SnakeGame\SnakeHead.cs" />
+    <Compile Include="Code\Scenes\SpaceGame\FuelBar.cs" />
+    <Compile Include="Code\Scenes\SpaceGame\Lander.cs" />
     <Compile Include="Code\Scenes\SpaceGame\Mountain.cs" />
     <Compile Include="Code\Scenes\SpaceGame\SpaceScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +111,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Output\Assets\Fonts\orangeKid.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Output\Assets\Sprites\LoadingBar\backTexture.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Output\Assets\Sprites\LoadingBar\barTexture.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Output\Assets\Sprites\TileSheet.xnb">
