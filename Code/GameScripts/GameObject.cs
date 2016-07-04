@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	/// <summary>
 	/// All components of the game have to inherit this class and the stuff will all be handled automatically

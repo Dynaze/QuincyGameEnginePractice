@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
     public struct Tile
     {

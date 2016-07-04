@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	class Button : GameObject
 	{
@@ -16,19 +16,34 @@ namespace QEngine
 		public int height;
 		public float rotation;
 
+		public float percentX;
+		public float percentY;
+
 		//https://www.youtube.com/watch?v=jQgwEsJISy0
 		public delegate void ClickEventHandler();
 		public event ClickEventHandler Clicked;
 
 		Button() : base(true) { }
 
+		public override void Start()
+		{
+			Global.Ref.Window.ClientSizeChanged += OnResize;
+		}
+
 		public override void Update(GameTime gameTime)
 		{
 			if(ControlHandle.MouseLeftClicked() && bounds.Contains(ControlHandle.CurrentMouse.Position))
 			{
-				Console.WriteLine("Hello");
+				//Console.WriteLine("Hello");
 				Clicked?.Invoke();
 			}
+		}
+
+		public void OnResize(object sender, EventArgs e)
+		{
+			DisplayConvert.ChangeViewport(Global.Ref.GraphicsDevice.Viewport);
+			bounds.X = (int)DisplayConvert.ToPercentW(percentX);
+			bounds.Y = (int)DisplayConvert.ToPercentH(percentY);
 		}
 
 		public override void DrawUi(SpriteBatch sb)
@@ -62,7 +77,9 @@ namespace QEngine
 			}
 			if(width != null && height != null && position != null)
 			{
-				button.bounds = new Rectangle((int)position.Value.X, (int)position.Value.Y, width.Value, height.Value);
+				button.percentX = position.Value.X;
+				button.percentY = position.Value.Y;
+				button.bounds = new Rectangle((int)DisplayConvert.ToPercentW(button.percentX), (int)DisplayConvert.ToPercentH(button.percentY), width.Value, height.Value);
 			}
 			else
 			{

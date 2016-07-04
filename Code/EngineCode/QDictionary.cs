@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public static class QDictionary
 	{

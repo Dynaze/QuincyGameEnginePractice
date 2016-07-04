@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class Program : Game
 	{
@@ -12,29 +12,26 @@ namespace QEngine
 				quincy.Run();
 		}
 
-		public GraphicsDeviceManager graphicsDeviceManager;
+		public GraphicsDeviceManager graphicsDeviceManager { get; private set; }
 
 		public Program()
 		{
 			graphicsDeviceManager = new GraphicsDeviceManager(this)
 			{
-				//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
-				//GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
 				PreferredBackBufferWidth = 1280,
 				PreferredBackBufferHeight = 720,
 				HardwareModeSwitch = true,
-				SynchronizeWithVerticalRetrace = false,
+				SynchronizeWithVerticalRetrace = true,
 				IsFullScreen = false,
 				PreferMultiSampling = true,
 			};
-			graphicsDeviceManager.ApplyChanges();
+			IsFixedTimeStep = false;
+			Content.RootDirectory = Global.pipeline;
+			Global.Ref = this;
 		}
 
 		protected override void LoadContent()
 		{
-			Content.RootDirectory = Global.pipeline;
-			IsFixedTimeStep = false;
-			Global.Ref = this;
 			SceneManager.NewSceneManager();
 		}
 

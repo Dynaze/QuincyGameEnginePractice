@@ -2,60 +2,29 @@
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 
-namespace QEngine
+using DC = QuincyGameEnginePractice.DisplayConvert;
+
+namespace QuincyGameEnginePractice
 {
 	public abstract class Scene : IScene
 	{
-		World _world;
-		public World world
-		{
-			get { return _world; }
-			set { _world = value; }
-		}
+		public World world { get; set; }
 
-		Color _BackgroundColor;
-		public Color BackgroundColor
-		{
-			get { return _BackgroundColor; }
-			set { _BackgroundColor = value; }
-		}
+		public Color BackgroundColor { get; set; }
 
-		ComponentManager _componentManager;
-		public ComponentManager componentManager
-		{
-			get { return _componentManager; }
-			set { _componentManager = value; }
-		}
+		public ComponentManager componentManager { get; set; }
 
-		string _SceneName;
-		public string SceneName
-		{
-			get { return _SceneName; }
-			set { _SceneName = value; }
-		}
+		public string SceneName { get; set; }
 
-		Rectangle _screenArea;
-		public Rectangle ScreenArea
-		{
-			get { return _screenArea; }
-			set { _screenArea = value; }
-		}
+		public Rectangle ScreenArea { get; set; }
 
-		SpriteBatch _spriteBatch;
-		public SpriteBatch spriteBatch
-		{
-			get { return _spriteBatch; }
-			set { _spriteBatch = value; }
-		}
+		public SpriteBatch spriteBatch { get; set; }
 
-		ControlHandle _input;
-		public ControlHandle Input
-		{
-			get { return _input;}
-			set { _input = value;}
-		}
+		public ControlHandle Input { get; set; }
 
-		public Coroutines coroutine;
+		public GraphicsDevice graphics { get; set; }
+
+		public Coroutines coroutine { get; set; }
 
 		/// <summary>
 		/// 0.033333 = 30 times per second
@@ -74,13 +43,15 @@ namespace QEngine
 
 		public void OnLoadContent()
 		{
+			graphics = Global.Ref.GraphicsDevice;
 			componentManager = new ComponentManager();
-			GetComponents.components = _componentManager;
+			GetComponents.components = componentManager;
 			coroutine = new Coroutines();
-			spriteBatch = new SpriteBatch(Global.Ref.GraphicsDevice);
-			ScreenArea = new Rectangle(0, 0, Global.Ref.GraphicsDevice.Viewport.Width, Global.Ref.GraphicsDevice.Viewport.Height);
+			spriteBatch = new SpriteBatch(graphics);
+			ScreenArea = new Rectangle(0, 0, graphics.Viewport.Width, graphics.Viewport.Height);
 			BackgroundColor = Color.CornflowerBlue;
 			Input = new ControlHandle();
+			DC.ChangeViewport(graphics.Viewport);
 			LoadContent();
 		}
 
@@ -125,15 +96,16 @@ namespace QEngine
 
 		public void OnUpdate(GameTime gameTime)
 		{
-			var delta = MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);
-			accumlator += delta;
+			//var delta = MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);
+			accumlator += (float)gameTime.ElapsedGameTime.TotalSeconds;
 			Update(gameTime);
 			UpdateStuff(gameTime);
 			while(accumlator > fixedUpdate)
 			{
 				FixedUpdate(fixedUpdate);
 				FixedUpdateStuff(fixedUpdate);
-				coroutine?.Update();
+				if(coroutine.Running)
+					coroutine?.Update();
 				world?.Step(fixedUpdate);
 				accumlator -= fixedUpdate;
 			}
@@ -214,7 +186,7 @@ namespace QEngine
 
 		public void Clear()
 		{
-			Global.Ref.GraphicsDevice.Clear(BackgroundColor);
+			graphics.Clear(BackgroundColor);
 		}
 	}
 }

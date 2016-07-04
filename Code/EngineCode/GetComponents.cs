@@ -1,4 +1,4 @@
-﻿namespace QEngine
+﻿namespace QuincyGameEnginePractice
 {
 	public static class GetComponents
 	{

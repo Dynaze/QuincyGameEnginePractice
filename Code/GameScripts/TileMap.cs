@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class TileMap : GameObject
 	{

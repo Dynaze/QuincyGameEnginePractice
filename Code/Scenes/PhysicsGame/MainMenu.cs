@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine
+using DC = QuincyGameEnginePractice.DisplayConvert;
+
+namespace QuincyGameEnginePractice
 {
 	/// <summary>
 	/// This is like going to be the main menu for the game, learn how to click on ui elements like buttons
@@ -33,28 +35,28 @@ namespace QEngine
 				width: 400,
 				height: 100,
 				color: Color.LightPink,
-				position: new Vector2(ScreenArea.Width / 2 - 200, ScreenArea.Height / 2 - 200));
+				position: new Vector2(-.30f, .8f));
 			StartGame = Button.NewButton(
 				font: primeCode,
 				message: "Start Game!",
 				width: 150,
 				height: 50,
 				color: Color.White,
-				position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2));
+				position: new Vector2(-.1f, .2f));
 			Options = Button.NewButton(
 				font: primeCode,
 				message: "Options",
 				width: 150,
 				height: 50,
 				color: Color.White,
-				position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 100));
+				position: new Vector2(-.1f, -.2f));
 			Quit = Button.NewButton(
 				font: primeCode,
 				message: "Quit",
 				width: 150,
 				height: 50,
 				color: Color.White,
-				position: new Vector2(ScreenArea.Width / 2 - 75, ScreenArea.Height / 2 + 200));
+				position: new Vector2(-.1f, -.6f));
 			StartGame.Clicked += () =>
 			{
 				SceneManager.ChangeScene("Test");
@@ -67,7 +69,10 @@ namespace QEngine
 			{
 				Global.Ref.Exit();
 			};
-			s = new Slime();
+			s = new Slime()
+			{
+				Position = DC.ToPercent(new Vector2(-1.04f, 1.1f))
+			};
 		}
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class Coroutines
 	{
