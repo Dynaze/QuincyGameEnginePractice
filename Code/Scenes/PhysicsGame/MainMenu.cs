@@ -34,7 +34,7 @@ namespace QuincyGameEnginePractice
 				message: "WELCOME TO PHIZZLE",
 				width: 400,
 				height: 100,
-				color: Color.LightPink,
+				color: Color.Blue,
 				position: new Vector2(-.30f, .8f));
 			StartGame = Button.NewButton(
 				font: primeCode,
