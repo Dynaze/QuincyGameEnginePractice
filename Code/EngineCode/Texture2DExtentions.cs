@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public static class Texture2DExtentions
 	{

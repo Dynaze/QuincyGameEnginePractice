@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public static class Global
 	{

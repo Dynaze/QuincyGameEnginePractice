@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
-	public class AnimationFrame
+	public struct AnimationFrame
 	{
-		public Rectangle SourceRectangle { get; set; }
-		public TimeSpan Duration { get; set; }
+		public Rectangle SourceRectangle;
+		public float DurationF;
 	}
 }
 

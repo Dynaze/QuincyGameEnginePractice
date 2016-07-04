@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	/// <summary>
 	/// FPS Counter Class

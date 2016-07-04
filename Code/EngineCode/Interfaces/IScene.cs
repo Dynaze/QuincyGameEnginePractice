@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public interface IScene
 	{

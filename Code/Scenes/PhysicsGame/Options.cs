@@ -1,40 +1,39 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class Options : Scene
 	{
 		Button resUp;
 		Button resDown;
 		Button resolution;
-
+		Button back;
+		Button Apply;
 		Button toggleFullscreen;
 
 		SpriteFont PrimeCode;
 
-		static string[] resolutions =
-		{
-			"1024x768", "1280x720", "1366x768", "1600x900", "1680x1050","1920x1080", "1920x1200", "2560x1600", "2560x1080", "3840x2160", "4096x2160"
-		};
+		List<string> resolutions;
 		 
-		void ResDown()
-		{
-			resOptions = MathHelper.Clamp(--resOptions, 0, resolutions.Length - 1);
-			string[] temp = resolutions[resOptions].Split('x');
-			w = int.Parse(temp[0]);
-			h = int.Parse(temp[1]);
-		}
-
 		int resOptions = 1;
 
 		int w = 640;
 		int h = 480;
 
+		void ResDown()
+		{
+			resOptions = MathHelper.Clamp(--resOptions, 0, resolutions.Count - 1);
+			string[] temp = resolutions[resOptions].Split('x');
+			w = int.Parse(temp[0]);
+			h = int.Parse(temp[1]);
+		}
+
 		void ResUp()
 		{
-			resOptions = MathHelper.Clamp(++resOptions, 0, resolutions.Length - 1);
+			resOptions = MathHelper.Clamp(++resOptions, 0, resolutions.Count - 1);
 			string[] temp = resolutions[resOptions].Split('x');
 			w = int.Parse(temp[0]);
 			h = int.Parse(temp[1]);
@@ -49,21 +48,27 @@ namespace QEngine
 
 		public override void Start()
 		{
-			resDown = Button.NewButton(message: "Resolution down", position: new Vector2(50,50), width: 200, height: 80);
+			resolutions = new List<string>();
+			var g = Global.Ref.GraphicsDevice.Adapter.SupportedDisplayModes;
+			foreach(var d in g)
+			{
+				resolutions.Add($"{d.Width}x{d.Height}");
+			}
+			resDown = Button.NewButton(message: "Resolution down", position: new Vector2(-.8f, .8f), width: 200, height: 80);
 			resDown.Clicked += () =>
 			{
 				ResDown();
 				resolution.text.text = $"{w}x{h}";
 			};
-			resUp = Button.NewButton(message: "Resolution up", position: new Vector2(650, 50), width: 200, height: 80);
+			resUp = Button.NewButton(message: "Resolution up", position: new Vector2(0, .8f), width: 200, height: 80);
 			resUp.Clicked += () =>
 			{
 				ResUp();
 				resolution.text.text = $"{w}x{h}";
 			};
-			resolution = Button.NewButton(position: new Vector2(350, 50), width: 200, height: 80);
+			resolution = Button.NewButton(position: new Vector2(-.4f, .8f), width: 200, height: 80);
 			resolution.text.text = $"{w}x{h}";
-			toggleFullscreen = Button.NewButton(message: "Fullscreen?", position: new Vector2(500, 500), width: 200, height: 80);
+			toggleFullscreen = Button.NewButton(message: "Fullscreen?", position: new Vector2(0, 0), width: 200, height: 80);
 			toggleFullscreen.Clicked += () =>
 			{
 				Global.Ref.graphicsDeviceManager.PreferredBackBufferWidth = w;
@@ -71,9 +76,10 @@ namespace QEngine
 				Global.Ref.graphicsDeviceManager.ToggleFullScreen();
 				Global.Ref.graphicsDeviceManager.ApplyChanges();
 			};
-			var back = Button.NewButton(message: "Back to menu", position: new Vector2(0, ScreenArea.Bottom - 80), width: 200, height: 80);
+			back = Button.NewButton(message: "Back to menu", position: new Vector2(-1f, -.8f), width: 200, height: 80);
 			back.Clicked += () => SceneManager.ChangeScene("MainMenu");
-			var Apply = Button.NewButton(message: "Apply settings\n(Don't apply settings\nthat are higher\nthan your native\nscreen res :[ )", width: 240, height: 120, position: new Vector2(0, 400));
+			Apply = Button.NewButton(message: "Apply settings\n(Don't apply settings\nthat are higher\nthan your native\nscreen res :[ )", 
+				width: 240, height: 120, position: new Vector2(-1, 0));
 			Apply.Clicked += () =>
 			{
 				if(Global.Ref.graphicsDeviceManager.IsFullScreen)

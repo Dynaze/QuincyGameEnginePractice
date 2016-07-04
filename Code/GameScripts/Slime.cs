@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using Microsoft.Xna.Framework.Input;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class Slime : GameObject
 	{
@@ -10,26 +10,26 @@ namespace QEngine
 
 		Texture2D slime;
 
-		Animation slimeIdle;
+		CQAnimation slimeIdle;
 
 		public override void Start()
 		{
 			if(slime == null)
 				slime = Global.Ref.Content.Load<Texture2D>("Sprites/slime");
-			slimeIdle = new Animation();
-			var time = TimeSpan.FromSeconds(0.1f);
+			slimeIdle = new CQAnimation();
+			var time = 0.1f;
 			for(int i = 0; i < 9; i++)
-				slimeIdle.AddFrame(new Rectangle(i * 256, 0, 256, 256), time);
+				slimeIdle.Add(new Rectangle(i * 256, 0, 256, 256), time);
 		}
 
 		public override void FixedUpdate(float fixedUpdate)
 		{
-			slimeIdle.Update(fixedUpdate);
+			slimeIdle.PlayAnimation();
 		}
 
 		public override void Draw(SpriteBatch sb)
 		{
-			sb.Draw(slime, sourceRectangle: slimeIdle.CurrentRectangle, scale: Vector2.One, color: Color.White, position: Vector2.Zero);
+			sb.Draw(slime, position: Position, sourceRectangle: slimeIdle.CurrentFrame, color: Color.White);
 		}
 
 		public override void Dispose()

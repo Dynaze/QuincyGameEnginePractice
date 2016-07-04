@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class BallPitLevel : Scene
 	{
@@ -25,7 +25,6 @@ namespace QEngine
 		public override void LoadContent()
 		{
 			blockTexture = Texture2DExtentions.ColorTexture2D(10, 10, Color.GreenYellow);
-			BackgroundColor = Color.CornflowerBlue;
 			PrimeCode = Global.Ref.Content.Load<SpriteFont>("Fonts/PrimeCode");
 		}
 
@@ -38,7 +37,7 @@ namespace QEngine
 			walls[0] = new Wall(world, 0);
 			walls[1] = new Wall(world, 2);
 			fps = new FPSCounter();
-			debugFps = Button.NewButton(font: PrimeCode, width: 200, height: 40, position: Vector2.Zero);
+			debugFps = Button.NewButton(font: PrimeCode, width: 200, height: 40, position: new Vector2(-1,1));
 			for(int i = 0; i < 10; i++)
 			{ var b = new Block(world); }
 		}
@@ -64,14 +63,14 @@ namespace QEngine
 
 		public override void Draw()
 		{
-			Global.Ref.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+			//Global.Ref.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
 			base.Draw();
 		}
 
 		IEnumerator SpawnBlock(GameTime gameTime)
 		{
 			new Block(world).Start();
-			yield return Coroutines.Pause(0.0002f);
+			yield return Coroutines.Pause(1/120f);
 		}
 
 		public override void UnloadContent()

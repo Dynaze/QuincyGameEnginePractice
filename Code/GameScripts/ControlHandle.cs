@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace QEngine
+namespace QuincyGameEnginePractice
 {
 	public class ControlHandle : GameObject
 	{
