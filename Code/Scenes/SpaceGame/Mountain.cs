@@ -1,4 +1,5 @@
 ﻿using System;
+using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
@@ -24,6 +25,8 @@ namespace QuincyGameEnginePractice
 
 		Color color;
 
+		Vector2 origin;
+
 		public Mountain(World world, ref int pixelsLeft) : base(true)
 		{
 			if(isFinishSpot == false)
@@ -45,7 +48,7 @@ namespace QuincyGameEnginePractice
 			}
 			pixelsLeft -= width;
 			remainingWidth = pixelsLeft;
-			body = BodyFactory.CreateRectangle(world, width, height, 10f);
+			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(width), ConvertUnits.ToSimUnits(height), 10f);
 			if(isFinishSpot && !isFinishSpotThere)
 			{
 				color = Color.DimGray;
@@ -54,12 +57,14 @@ namespace QuincyGameEnginePractice
 			else
 				color = Color.SandyBrown;
 			texture = Texture2DExtentions.ColorTexture2D(width, height, color);
+			origin = new Vector2(width, height)/2;
 		}
 
 		public override void Start()
 		{
 			body.BodyType = BodyType.Static;
-			body.Position = new Vector2(remainingWidth, Global.Ref.GraphicsDevice.Viewport.Height - height);
+			body.FixedRotation = true;
+			body.SetTransform(new Vector2(remainingWidth, Global.Ref.GraphicsDevice.Viewport.Height - height).SimUnits(), 0f);
 		}
 
 		public override void FixedUpdate(float fixedUpdate)
@@ -69,12 +74,12 @@ namespace QuincyGameEnginePractice
 
 		public override void Update(GameTime gameTime)
 		{
-
+			
 		}
 
 		public override void Draw(SpriteBatch sb)
 		{
-			sb.Draw(texture, body.Position, Color.White);
+			sb.Draw(texture, body.Position.DisUnits(), origin: origin,color:Color.White);
 		}
 
 		public override void Dispose()

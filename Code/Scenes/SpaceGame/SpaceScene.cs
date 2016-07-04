@@ -9,6 +9,8 @@ namespace QuincyGameEnginePractice
 
         FuelBar bar;
 
+		Lander lander;
+
 		public override void LoadContent()
 		{
             bar = new FuelBar();
@@ -25,6 +27,7 @@ namespace QuincyGameEnginePractice
 			{
 				new Mountain(world, ref remainingPixels);
 			}
+			lander = new Lander(world);
 		}
 
 		public override void Update(GameTime gameTime)
