@@ -8,13 +8,13 @@ namespace QuincyGameEnginePractice
 {
 	public abstract class Scene : IScene
 	{
+		public string SceneName { get; set; }
+
 		public World world { get; set; }
 
 		public Color BackgroundColor { get; set; }
 
 		public ComponentManager componentManager { get; set; }
-
-		public string SceneName { get; set; }
 
 		public Rectangle ScreenArea { get; set; }
 
@@ -97,10 +97,10 @@ namespace QuincyGameEnginePractice
 		public void OnUpdate(GameTime gameTime)
 		{
 			//var delta = MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);
-			accumlator += (float)gameTime.ElapsedGameTime.TotalSeconds;
+			accumlator += MathHelper.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 0.25f);//(float)gameTime.ElapsedGameTime.TotalSeconds;
 			Update(gameTime);
 			UpdateStuff(gameTime);
-			while(accumlator > fixedUpdate)
+			while(accumlator >= fixedUpdate)
 			{
 				FixedUpdate(fixedUpdate);
 				FixedUpdateStuff(fixedUpdate);

@@ -29,7 +29,6 @@ namespace QuincyGameEnginePractice
 			if(texture == null)
 				texture = Texture2DExtentions.ColorTexture2D(15, 15, Color.GreenYellow);
 			body = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 150f);
-			//body = BodyFactory.CreateCircle(world, ConvertUnits.ToSimUnits(1000), 150f);
 			body.IgnoreCCD = true;			
 			body.BodyType = BodyType.Dynamic;
 			body.Restitution = 0.1f;
@@ -40,7 +39,12 @@ namespace QuincyGameEnginePractice
 
 		public override void FixedUpdate(float fixedUpdate)
 		{
-			var delta = fixedUpdate;
+			
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
 			var toMove = Vector2.Zero;
 			if(ControlHandle.KeyDown(Keys.W))
 			{
