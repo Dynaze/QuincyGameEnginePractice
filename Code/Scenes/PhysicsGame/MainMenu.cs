@@ -71,7 +71,7 @@ namespace QuincyGameEnginePractice
 			};
 			s = new Slime()
 			{
-				Position = DC.ToPercent(new Vector2(-1.04f, 1.1f))
+				Position = DC.PercentToPixel(new Vector2(-1.04f, 1.1f))
 			};
 		}
 	}

@@ -6,7 +6,7 @@ namespace QuincyGameEnginePractice
 	/// <summary>
 	/// This like like a gameobject in unity that you place in the scene that can be anything from like a player to like ui or something
 	/// </summary>
-	public interface IQomponent2D
+	public interface IComponent2D
 	{
 		/// <summary>
 		/// every object in the game will have a position that does not have to be

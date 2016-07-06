@@ -29,7 +29,7 @@ namespace QuincyGameEnginePractice
 			return new Vector2(_vp.Width / 2, _vp.Height / 2);
 		}
 
-		public static Vector2 ToPercent(Vector2 percentLocation)
+		public static Vector2 PercentToPixel(Vector2 percentLocation)
 		{
 			throwIfNoVp();
 			Vector2 temp = GetMiddle();
@@ -43,7 +43,7 @@ namespace QuincyGameEnginePractice
 			return newVec;
 		}
 
-		public static float ToPercentW(float percentLocation)
+		public static float PercentToPixelX(float percentLocation)
 		{
 			throwIfNoVp();
 			Vector2 temp = GetMiddle();
@@ -54,7 +54,7 @@ namespace QuincyGameEnginePractice
 			return newFloat;
 		}
 
-		public static float ToPercentH(float percentLocation)
+		public static float PercentToPixelY(float percentLocation)
 		{
 			throwIfNoVp();
 			Vector2 temp = GetMiddle();

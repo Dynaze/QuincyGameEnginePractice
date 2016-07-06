@@ -45,10 +45,13 @@ namespace QuincyGameEnginePractice
 			get { return previousPadState; }
 		}
 
+		public static event Action OnMouseClicked;
+
 		public ControlHandle() : base(true)
 		{
 			currentKeyboard = Keyboard.GetState();
 			currentMouse = Mouse.GetState();
+			
 			currentPadState = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
 			foreach(PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
 				currentPadState[(int)index] = GamePad.GetState(index);
@@ -91,7 +94,12 @@ namespace QuincyGameEnginePractice
 
 		public static bool MouseLeftClicked()
 		{
-			return currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released;
+			if(currentMouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton == ButtonState.Released)
+			{
+				OnMouseClicked?.Invoke();
+				return true;
+			}
+			return false;
 		}
 
 		public static bool MouseLeftHeld()

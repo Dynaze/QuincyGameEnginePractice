@@ -4,11 +4,11 @@ namespace QuincyGameEnginePractice
 {
 	public class ComponentManager
 	{
-		public List<IQomponent2D> gameObjects { get; }
+		public List<IComponent2D> gameObjects { get; }
 
 		public ComponentManager()
 		{
-			gameObjects = new List<IQomponent2D>();
+			gameObjects = new List<IComponent2D>();
 		}
 
 		public int Count()
@@ -16,13 +16,13 @@ namespace QuincyGameEnginePractice
 			return gameObjects.Count;
 		}
 
-		public void Insert(IQomponent2D o)
+		public void Insert(IComponent2D o)
 		{
 			o.Start();
 			gameObjects.Add(o);
 		}
 
-		public void Add(IQomponent2D component)
+		public void Add(IComponent2D component)
 		{
 			gameObjects.Add(component);
 		}
@@ -32,7 +32,7 @@ namespace QuincyGameEnginePractice
 			gameObjects.Clear();
 		}
 
-		public void Remove(IQomponent2D component)
+		public void Remove(IComponent2D component)
 		{
 			gameObjects.Remove(component);
 			component.Dispose();

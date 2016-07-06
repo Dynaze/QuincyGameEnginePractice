@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice
 {
+	[Obsolete]
 	class Button : GameObject
 	{
 		public Texture2D buttonTexture;
@@ -25,25 +26,12 @@ namespace QuincyGameEnginePractice
 
 		Button() : base(true) { }
 
-		public override void Start()
-		{
-			Global.Ref.Window.ClientSizeChanged += OnResize;
-		}
-
 		public override void Update(GameTime gameTime)
 		{
 			if(ControlHandle.MouseLeftClicked() && bounds.Contains(ControlHandle.CurrentMouse.Position))
 			{
-				//Console.WriteLine("Hello");
 				Clicked?.Invoke();
 			}
-		}
-
-		public void OnResize(object sender, EventArgs e)
-		{
-			DisplayConvert.ChangeViewport(Global.Ref.GraphicsDevice.Viewport);
-			bounds.X = (int)DisplayConvert.ToPercentW(percentX);
-			bounds.Y = (int)DisplayConvert.ToPercentH(percentY);
 		}
 
 		public override void DrawUi(SpriteBatch sb)
@@ -79,7 +67,7 @@ namespace QuincyGameEnginePractice
 			{
 				button.percentX = position.Value.X;
 				button.percentY = position.Value.Y;
-				button.bounds = new Rectangle((int)DisplayConvert.ToPercentW(button.percentX), (int)DisplayConvert.ToPercentH(button.percentY), width.Value, height.Value);
+				button.bounds = new Rectangle((int)DisplayConvert.PercentToPixelX(button.percentX), (int)DisplayConvert.PercentToPixelY(button.percentY), width.Value, height.Value);
 			}
 			else
 			{

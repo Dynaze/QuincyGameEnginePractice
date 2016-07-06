@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace QuincyGameEnginePractice
 {
+	[Obsolete ]
 	class Label : GameObject
 	{
 		Text text;

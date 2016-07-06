@@ -25,7 +25,8 @@ namespace QuincyGameEnginePractice
 			QDictionary.Add("Test", new BallPitLevel());
 			//QDictionary.Add("Snake", new SnakeScene());\
 			QDictionary.Add("Space", new SpaceScene());
-			ChangeScene("Space");
+			QDictionary.Add("TestGui", new TestGui());
+			ChangeScene("TestGui");
 		}
 
 		/// <summary>

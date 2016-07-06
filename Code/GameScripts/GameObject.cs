@@ -6,7 +6,7 @@ namespace QuincyGameEnginePractice
 	/// <summary>
 	/// All components of the game have to inherit this class and the stuff will all be handled automatically
 	/// </summary>
-	public abstract class GameObject : IQomponent2D
+	public abstract class GameObject : IComponent2D
 	{
 		bool awake;
 		public bool IsStart
@@ -72,7 +72,7 @@ namespace QuincyGameEnginePractice
 			}
 		}
 
-		public static void Add(IQomponent2D thing)
+		public static void Add(IComponent2D thing)
 		{
 			GetComponents.components.Add(thing);
 		}
