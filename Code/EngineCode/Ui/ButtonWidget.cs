@@ -11,6 +11,7 @@ namespace QuincyGameEnginePractice
 		public Rectangle Bounds
 		{
 			get { return _bounds; }
+			set { _bounds = value; }
 		}
 		Rectangle _bounds;
 
@@ -63,6 +64,11 @@ namespace QuincyGameEnginePractice
 		{
 			if(Bounds.Contains(ControlHandle.CurrentMouse.Position))
 				OnMouseClicked?.Invoke();
+		}
+
+		public void OnDestroy()
+		{
+			texture.Dispose();
 		}
 	}
 }
